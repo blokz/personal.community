@@ -1,0 +1,24 @@
+{
+  "name": "profile",
+  "version": "1.0.0",
+  "description": "A steem powered social profile",
+  "main": "site.config.js",
+  "scripts": {
+    "start": "nanogen start",
+    "build": "nanogen build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blokz/profile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blokz/profile/issues"
+  },
+  "homepage": "https://github.com/blokz/profile#readme",
+  "devDependencies": {
+    "nanogen": "^0.4.2"
+  }
+}
