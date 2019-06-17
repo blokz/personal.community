@@ -1,0 +1,28 @@
+{
+  "name": "mdl-stepper",
+  "description": "A library that implements to the Material Design Lite a polyfill of stepper component specified by Material Design.",
+  "main": "stepper.min.js",
+  "authors": [
+    "Alexandre Thebaldi"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Material",
+    "Design",
+    "Lite",
+    "MDL-Stepper",
+    "Material",
+    "Design",
+    "Stepper",
+    "Stepper",
+    "Component"
+  ],
+  "homepage": "https://github.com/ahlechandre/mdl-stepper",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

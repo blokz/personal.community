@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="../../../../stepper.css">
+  <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  <script src="../../../../stepper.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      background-color: rgba(0, 0, 0, .02);
+    }
+    
+    .mdl-stepper-demo .mdl-stepper {
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- style -->
+  <style>
+    .mdl-stepper > .mdl-step > .mdl-step__content {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <section class="mdl-stepper-demo">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col">
+        <!-- markup -->
+        <ul class="mdl-stepper mdl-stepper--feedback mdl-stepper--horizontal" id="demo-stepper-horizontal-linear-feedback">
+          <li class="mdl-step" data-step-transient-message="Step 1 looks great! Step 2 is coming up.">
+            <span class="mdl-step__label">
+              <span class="mdl-step__title">
+                <span class="mdl-step__title-text">Title of step 1</span>
+            </span>
+            </span>
+            <div class="mdl-step__content">
+            </div>
+            <div class="mdl-step__actions">
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
+            Continue
+          </button>
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+            Cancel
+          </button>
+              <button disabled class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+            Back
+          </button>
+
+            </div>
+          </li>
+          <li class="mdl-step" data-step-transient-message="Step 2 looks great! Step 3 is coming up.">
+            <span class="mdl-step__label">
+          <span class="mdl-step__title">
+            <span class="mdl-step__title-text">Title longer than it should be</span>
+            </span>
+            </span>
+            <div class="mdl-step__content">
+              <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input autocomplete="off" class="mdl-textfield__input" type="text" id="stepper-transient-message">
+                  <label class="mdl-textfield__label" for="stepper-transient-message">Transient message for current step</label>
+                  <span class="mdl-textfield__error">Invalid input</span>
+                </div>
+              </form>
+
+            </div>
+            <div class="mdl-step__actions">
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
+            Continue
+          </button>
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+            Cancel
+          </button>
+              <button disabled class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+            Back
+          </button>
+            </div>
+          </li>
+          <li class="mdl-step" data-step-transient-message="Step 3 looks great! Thanks.">
+            <span class="mdl-step__label">
+          <span class="mdl-step__title">
+            <span class="mdl-step__title-text">Title of step 3</span>
+            </span>
+            </span>
+            <div class="mdl-step__content"></div>
+            <div class="mdl-step__actions">
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
+            Continue
+          </button>
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+            Cancel
+          </button>
+              <button disabled class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+            Back
+          </button>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- script -->
+  <script>
+  (function () {
+    var stepperHorizontal = function () {
+      var selector = '.mdl-stepper#demo-stepper-horizontal-linear-feedback';
+      // Select stepper container element      
+      var stepperElement = document.querySelector(selector);
+      var Stepper;
+      var steps;
+      var inputTransientMessage /** @type {HTMLElement} */;
+
+      if (!stepperElement) return;
+      
+      // Get the MaterialStepper instance of element to control it.          
+      Stepper = stepperElement.MaterialStepper;
+      
+      if (!Stepper) {
+        console.error('MaterialStepper instance is not available for selector: ' + selector + '.');
+        return;
+      }
+      steps = stepperElement.querySelectorAll('.mdl-step');
+
+      for (var i = 0; i < steps.length; i++) {
+        
+        // When user clicks on [data-stepper-next] button of step.          
+        steps[i].addEventListener('onstepnext', (function (e, step) {
+          return function () {
+            // {element}.MaterialStepper.next() change the state of current step to "completed" 
+            // and move one step forward.        
+            inputTransientMessage = step.querySelector('#stepper-transient-message');
+            
+            if (inputTransientMessage && inputTransientMessage.value.length) {
+              step.setAttribute('data-step-transient-message', inputTransientMessage.value);
+            }
+            setTimeout(function () {
+              Stepper.next();              
+            }, 3000);
+          };
+        })(event, steps[i]));
+      }
+      // When all steps are completed this event is dispatched.          
+      stepperElement.addEventListener('onsteppercomplete', function (e) {
+        var toast = document.querySelector('#snackbar-stepper-complete');
+        if (!toast) return;
+        toast.MaterialSnackbar.showSnackbar({
+          message: 'Stepper horizontal + feedback are completed',
+          timeout: 4000,
+          actionText: 'Ok'
+        });
+      });
+    };
+
+    window.addEventListener('load', stepperHorizontal)
+  })();
+</script>
+</body>
+
+</html>
