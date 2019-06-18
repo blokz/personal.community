@@ -4,9 +4,6 @@ var count = 0;
 var playgroun1 = `
     You clicked once, you won't see this again. ^>^
 `;
-// data variable is in demo.json 
-//var mydata = JSON.parse(data);
-var year = new Date();
 
 
 

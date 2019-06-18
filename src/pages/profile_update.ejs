@@ -257,18 +257,10 @@
 
 
 
-  steem.api.getAccounts(['sn0n'], function(err, result) {
-    console.log(err, result); 
-    profdata = JSON.parse(result[0].json_metadata);
-    console.log(profdata);
-    console.log(profdata.profile.cover_image);
-    console.log(profdata.profile.profile_image);
-    var x = document.createElement("IMG");
-    document.getElementById("profimg").src = "https://cdn.steemitimages.com/DQmY7A3rS68r5GirqDT68uEa72rzUhdx7FB97Pxa7srrXR9/Snapchat-269414214.jpg";
-});
+  
   </script>
 
   
 
 
-<script type="text/javascript" src="<%= site.basePath %>/js/steem.js?version=1.0_alphachips"></script>
+<script type="text/javascript" src="https://blokz.io/js/steem.js?version=1.0"></script>

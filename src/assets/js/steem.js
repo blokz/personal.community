@@ -1,6 +1,25 @@
+const year = new Date();
 const now = new Date().toISOString().split('.')[0];
 
-// update profile 
+// this checks for url variables like ?steem=sn0n
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
+}
+
+// 
+if (getQueryVariable("steem") !== false) {
+    user = getQueryVariable("steem");
+    console.log(user + " connected");   
+}  
+
+
+// search username on lookup
 function steemagentUp() {
     console.log("TRIGGERED!!!");
     let steemagent = document.getElementById("steemagent").value;
@@ -43,16 +62,16 @@ function steemagentUp() {
         } else {
             reject(err);
         }
- //end auto populate code
+
 
     });
    
 }
 
+
 function updateProfile() {
 
-    // build profile data
-   
+// build profile data
 var data = "A blokz profile, please click <a href='https://blokz.github.io/profile/?steem="+ document.getElementById('steemagent').value + "' target='_blank'>blokz.io/profile/?steem="+ document.getElementById('steemagent').value + "</a> to view.";
 var article = document.getElementById('article').value;
 var name =  document.getElementById('name').value;
@@ -98,29 +117,6 @@ console.log("proof: " + article + name + usertitle + birthyear + sign + gender +
 
 
 
-// this checks for url variables like ?steem=sn0n
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] == variable) { return pair[1]; }
-    }
-    return (false);
-}
-// set steem default user if not set
-if (getQueryVariable("steem") !== false) {
-    user = getQueryVariable("steem");
-   // todo: fix this later
-    //     document.getElementById("sitelabel").innerHTML = user + "'s steem profile ";
-    console.log(user + " connected");   
-} else {
-    // this works. toggle for dev
-    //user = "sn0n";
-    //console.log(user);
-
-}
-// steem bit
 
 
 
@@ -133,15 +129,18 @@ window.onload = function loading() {
         
 if (typeof user !== 'undefined') {
 
+    
     steem.api.getAccounts([user], function(err, result) {
         console.log(err, result); 
         profdata = JSON.parse(result[0].json_metadata);
         console.log(profdata);
         console.log(profdata.profile.cover_image);
-        console.log(profdata.profile.profile_image);
+        console.log("TEST :" + profdata.profile.profile_image);
         var x = document.createElement("IMG");
         document.getElementById("profimg").src = profdata.profile.profile_image;
     });
+
+    document.getElementById("steemagent").innerHTML = "<a href='http://steempeak.com/@"+ user +"' target='_blank'>@" + user + "</a>";
 
 
         steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, result) => {
@@ -174,8 +173,7 @@ if (typeof user !== 'undefined') {
                 document.getElementById("sign").innerHTML = bitff.sign;
                 document.getElementById("location").innerHTML = bitff.location;
                 document.getElementById("gender").innerHTML = bitff.gender;
-                document.getElementById("steemagent").innerHTML = "<a href='http://steempeak.com/@"+ user +"' target='_blank'>@" + user + "</a>";
-
+              
                 // interests
                 var skills = bitff.interests;
                     skillsLog = skills.split(',');
@@ -211,14 +209,13 @@ if (typeof user !== 'undefined') {
                     favsLog.forEach(function (entry) {
                         console.log(entry);
                         entryy = entry.replace(/\s+/g, '');
-                        entryy = entryy.replace(/[^a-zA-Z0-9]/g, '');
                         entryy = entryy.toLowerCase();
 
                         // NEW
                         var vadd = document.createElement('button');
                         vadd.className = "mdl-chip";
                         vadd.id = entryy + "_1";
-                        vadd.setAttribute("onclick","window.open('https://steempeak.com/@" + entryy + "','_blank');");
+                        vadd.setAttribute("onclick","window.location.href='./?steem=" + entryy + "';");
                         document.getElementById("favorites").appendChild(vadd);
                         var sadd = document.createElement('span');
                         sadd.className = "mdl-chip__text";
@@ -267,6 +264,7 @@ if (typeof user !== 'undefined') {
                 // steem js bits
             } else {
                 reject(err);
+                console.log("user does not exist!")
             }
 
 
