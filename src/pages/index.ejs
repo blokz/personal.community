@@ -6,8 +6,8 @@
   <div class="mdl-card__actions mdl-card--border ">
           <div class="bio" id="bio">
               <!--<div id="userpic"><img id="default_pic" class="profile_pic"></div>-->
-              <div class="mdl-card__title-text"><img src="<%= site.basePath %>/images/avatar.png" height="64" class="profimg" id="profimg"></div>
-              Steem: <span id="steemagent"></span><br />
+              <div class="mdl-card__title-text"><img src="<%= site.basePath %>/images/avatar.png" height="64" width="64" class="profimg" id="profimg"></div>
+              Steem: <span id="steemagent"></span><div id="profilecardmini">
               Age: <span id="age"></span> || Sign:<span id="sign"></span><br />
               Gender: <span id="gender"></span> <br />
               Location: <span id="location"></span><br />
@@ -17,7 +17,7 @@
           <div>Favorite Steemians: 
            <div id="favorites"></div> 
           </div>
-          
+        </div>
         </div>
 
      
@@ -50,4 +50,4 @@
 
 
 
-  <script type="text/javascript" src="https://blokz.io/js/steem.js?version=1.0"></script>
+  <script type="text/javascript" src="/js/steem.js?version=1.05"></script>
