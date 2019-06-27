@@ -31,82 +31,150 @@
 
 <body>
   
-<!-- ##### Template Header ##### -->
-<div id="header">
-    <!-- <div class="superHeader">
-    
-    </div>
-     menu bar -->
-    <div class="midHeader">
-    <h1 class="headerTitle">
-            <button id="demo-menu-lower-left"
-            class="mdl-button mdl-js-button mdl-button--icon">
-            <!-- <i class="icon-menu"></i> -->
-            <img src="/images/logo512.png" height="32" width="32">
-    </button> <a href="../" style="color: white; text-decoration: none" id="sitelabel">
-        blokz/profile
-    </a></h1>
-    
-    <!-- ##### hamburger menu ##### -->
-    <label class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-        for="demo-menu-lower-left">           
-        <span id="side-bar">
-        <span class="sideBarTitle" role=”navigation”>Quick Links:</span>
-    
-            <a href="https://blokz.io/plan/">Da Plan</a>
-            <a href="./">Steem Profile</a>
-            <a href="https://blokz.io/update/">Blokz Updates</a>
-            <a href="https://blokz.io/contact/">Contact</a>
-            <a href="https://blokz.io/about/">About</a>
-
-
-
-            </span>
-        </label><!-- ul -->
-        
-    <!-- end menu bar -->
-    </div>
-
-    <div class="superHeader">
-    
-        
-        </div>
-
-<!-- end header -->    
-</div>
-    <!-- ##### Main Body Content ##### -->
-    <div id="main-copy"  role=”main”>
-        
 
   
-    <div class="demo-card-square mdl-card mdl-shadow--2dp" id="profilecard">
-  <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text" id="cms"><span id="name" class="name"></span> - 
-        <span id="usertitle"></span></h2>
-  </div>
-  <div class="mdl-card__actions mdl-card--border ">
-          <div class="bio" id="bio">
-              <!--<div id="userpic"><img id="default_pic" class="profile_pic"></div>-->
-              <div class="mdl-card__title-text"><img src="/images/avatar.png" height="64" width="64" class="profimg" id="profimg"></div>
-              Steem: <span id="steemagent"></span><div id="profilecardmini">
-              Age: <span id="age"></span> || Sign:<span id="sign"></span><br />
-              Gender: <span id="gender"></span> <br />
-              Location: <span id="location"></span><br />
-              Interests (tags): <div id="interests" class="interests"></div>
-             
-           <span>About Me:</span><div id="article" class="biofull"></div>
-          <div>Favorite Steemians: 
-           <div id="favorites"></div> 
-          </div>
-        </div>
-        </div>
+    <style>
 
-     
-  </div>
+    
+
+  .demo-card-wide.mdl-card {
+    width: 100%;
+    margin: 10px auto;  
+
+    background-color: white;
+  }
+  .preopreo {
+    color: #fff;
+    min-height: 213px;
+    background-color: #0234ce;
+    background: center / cover;
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+  
+  .profimg {
+   border: 3px solid white;
+    border-radius: 50%;
+    background-color: black;
+  }
+
+  .bio {
+    text-align: center;
+    margin: auto;
+  }
+  .biofull {
+    text-align: left;
+    
+  }
+
+.avatar {
+  height: 64px;
+  width: 64px;
+}
+
+
+.name {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+
+
+.mdl-card__media {
+	margin: 0;
+}
+.mdl-card__media > img {
+	max-width: 100%;
+}
+.mdl-card__actions {
+	display: flex;
+	box-sizing:border-box;
+	align-items: center;
+}
+.mdl-card__actions > .mdl-button--icon {
+	margin-right: 3px;
+	margin-left: 3px;
+}
+
+      </style>
+<div style="background-color:white" id="gridd">
+  
+  
+  <div class="preopreo" id="profilecard">&nbsp;</div>
+    <div style="text-align: center; margin: -64px auto;">
+      <img src="/images/avatar.png" height="128" width="128" class="profimg" id="profimg">
+    </div>
+  <div style="margin-top: 72px;">
+          <div class="bio" id="bio">
+            <div id="cms">
+              <div id="name" class="name"></div>
+              <div id="usertitle"></div>
+            </div>
+            <!--<div id="userpic"><img id="default_pic" class="profile_pic"></div>-->
+            <span id="steemagent"></span>
+            <div id="profilecardmini">
+             
+             
+           
+          
+<!--
+-->
+
+
+<div class="mdl-grid">
+   
+    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--5-col-desktop">
+      <div class="mdl-card__actions">
+        <span class="">
+<!-- -->
+<div style="border-right: 1px dashed; text-align: left; padding-right: 5px; min-width: 222px">
+<strong>Age:</strong> <div style="text-align: center" id="age"></div>
+<strong>Sign:</strong><div style="text-align: center" id="sign"></div>
+<strong>Gender:</strong><div style="text-align: center" id="gender"></div>
+<strong>Location:</strong><div style="text-align: center" id="location"></div>
+<div>&nbsp;</div>
+<strong>Favorite Steemians: 
+  <div id="favorites"></div> 
+</strong>
+
+
+</div>
+<!-- -->
+        </span>
+      </div>
+    </div>
+
+    <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--7-col-desktop">
+      <div class="mdl-card__actions">
+        <span class="">
+<!-- -->
+<strong>#Interests & Communities:</strong>  
+<div id="interests" class="interests"></div>
+<strong>About Me:</strong><div id="article" class="biofull"></div>
+
+
+<!-- -->
+        </span>
+      </div>
+    </div>
+
 </div>
 
 
-<!-- demo -->
+
+
+
+<!-- 
+-->
+        </div>
+        </div>
+
+
+</div>
+
+
+<!-- THIS NEEDS TO BE FIXED </div> -->
 
 <!-- work / goals , hobbies/intersts , sound/videos -->
 
@@ -115,9 +183,10 @@
 <!-- Basic Chip -->
 
   <!-- demo file -->
-   
+</div>
+
   
- <div class="external">
+ <div class="external" style="background-color:white" >
 
   Load a profile below: <br />
   <!-- TODO: add dynamic list of users -->
@@ -125,16 +194,15 @@
   <a href="./?steem=blokz">@blokz</a><br />
   <a href="./?steem=steemdrops">@steemdrops</a><br />
   or <br />
-  <a href="./profile_update/">Update Your Profile</a>
+  <a href="#" style="text-decoration: line-through">Update Your Profile</a>
   </small></div>  
   <!-- demo file -->
 
 
 
-  <script type="text/javascript" src="/js/steem.js?version=1.05"></script>
+  <script type="text/javascript" src="/js/steem.js?version=1.06"></script>
 
-      <!-- close body content div-->
-</div>
+      
 
 
 <!-- ##### Footer ##### -->
@@ -142,7 +210,7 @@
    
   <span style="padding-left: 10px; float: left">
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-      <i class="material-icons" onclick="javascript:location.href='../'">home</i>
+      <i class="material-icons" onclick="javascript:location.href='#'">keyboard_arrow_up</i>
     </button>
   
   </span>

@@ -190,44 +190,9 @@ acronym, .titleTip {
 
 /* ##### Main Copy ##### */
 
-#main-copy {
-  background-color: white;
-  text-align: justify;
-  line-height: 1.5em;
-  margin: 0 0 0 0em;
-  padding: 0.5mm 5mm 5mm 5mm;
-  border-left: 1px solid rgb(153,153,153);
-}
-
-#main-copy p {
-  margin: 1em 1ex 2em 1ex;
-  padding: 0;
-}
-
-#main-copy a {
-  color: rgb(0,102,204);
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-#main-copy a:hover {
-  text-decoration: none;
-}
 
 
 
-#main-copy .topOfPage {
-  background-color: transparent;
-  font-weight: bold;
-  text-decoration: none;
-  margin: 2.5ex 1ex 0 0;  /* For MSIE */
-  padding: 0;
-  float: right;
-}
-
-#main-copy > .topOfPage {
-  margin: 2.75ex 1ex 0 0;  /* For fully standards-compliant user agents */
-}
 
 dl {
   margin: 1em 1ex 2em 1ex;

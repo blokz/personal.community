@@ -31,52 +31,6 @@
 
 <body>
   
-<!-- ##### Template Header ##### -->
-<div id="header">
-    <!-- <div class="superHeader">
-    
-    </div>
-     menu bar -->
-    <div class="midHeader">
-    <h1 class="headerTitle">
-            <button id="demo-menu-lower-left"
-            class="mdl-button mdl-js-button mdl-button--icon">
-            <!-- <i class="icon-menu"></i> -->
-            <img src="/images/logo512.png" height="32" width="32">
-    </button> <a href="../" style="color: white; text-decoration: none" id="sitelabel">
-        blokz/profile
-    </a></h1>
-    
-    <!-- ##### hamburger menu ##### -->
-    <label class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-        for="demo-menu-lower-left">           
-        <span id="side-bar">
-        <span class="sideBarTitle" role=”navigation”>Quick Links:</span>
-    
-            <a href="https://blokz.io/plan/">Da Plan</a>
-            <a href="./">Steem Profile</a>
-            <a href="https://blokz.io/update/">Blokz Updates</a>
-            <a href="https://blokz.io/contact/">Contact</a>
-            <a href="https://blokz.io/about/">About</a>
-
-
-
-            </span>
-        </label><!-- ul -->
-        
-    <!-- end menu bar -->
-    </div>
-
-    <div class="superHeader">
-    
-        
-        </div>
-
-<!-- end header -->    
-</div>
-    <!-- ##### Main Body Content ##### -->
-    <div id="main-copy"  role=”main”>
-        
 
   
     <div class="demo-card-square mdl-card mdl-shadow--2dp" id="profilecard">
@@ -106,7 +60,31 @@
 
 
 <!-- demo -->
-
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <div class="mdl-card__title-text"><img src="/images/avatar.png" height="64" class="profimg" id="profimg"></div>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <div class="bio" id="bio">
+      <!--<div id="userpic"><img id="default_pic" class="profile_pic"></div>-->
+      <div class="mdl-card__title-text">
+          <span id="name" class="name"></span> - <span id="usertitle"></span>
+        </div>
+      Steem: <span id="steemagent"></span>
+      <div id="profilecardmini">
+            Age: <span id="age"></span> || Sign:<span id="sign"></span><br />
+            Gender: <span id="gender"></span> <br />
+            Location: <span id="location"></span><br />
+            Interests (tags): <div id="interests" class="interests"></div>
+     
+          <span>About Me:</span><div id="article" class="biofull"></div>
+        <div>Favorite Steemians: 
+          <div id="favorites"></div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
  <!-- work / goals , hobbies/intersts , sound/videos -->
 
 <!-- demo -->
@@ -127,8 +105,7 @@
 
 
     <script type="text/javascript" src="/js/steem.js?version=1.0_alphachips"></script>
-      <!-- close body content div-->
-</div>
+      
 
 
 <!-- ##### Footer ##### -->
@@ -136,7 +113,7 @@
    
   <span style="padding-left: 10px; float: left">
     <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-      <i class="material-icons" onclick="javascript:location.href='../'">home</i>
+      <i class="material-icons" onclick="javascript:location.href='#'">keyboard_arrow_up</i>
     </button>
   
   </span>
