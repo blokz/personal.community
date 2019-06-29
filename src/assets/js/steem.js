@@ -86,6 +86,10 @@ function updateProfile() {
 
   // profile build finished
 
+
+
+
+
   steem.broadcast.comment(
     document.getElementById('postingKey').value,
     '', //author

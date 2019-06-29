@@ -1,123 +1,23 @@
-<style>
+<button onclick="steemkeytest()">tett</button>
 
-    
 
-.demo-card-wide.mdl-card {
-  width: 100%;
+<script>
+  // steem keychain integrations
+  function steemkeytest() {
+  if(window.steem_keychain) {
+  // Steem Keychain extension installed...
+  console.log("keyring installed");
+} else {
+  // Steem Keychain extension not installed...
+  console.log("keyring not installed");
+  steem_keychain.requestHandshake(function() {
+    console.log('Handshake received!');
+});
 }
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('https://steemitimages.com/0x0/https://i.imgur.com/Gjr80cA.jpg') center / cover;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
-}
+};
 
-.profimg {
-
-  border-radius: 50%;
-  border: 3px solid whitesmoke;
-}
-    </style>
-
-
+// end steem keychain integrations
   
 
 
-<script type="text/javascript" src="<%= site.basePath %>/js/steem.js?version=1.0_alphachips"></script>
-
-
-
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <div class="mdl-card__title-text"><img src="<%= site.basePath %>/images/avatar.png" height="64" class="profimg" id="profimg"></div>
-  </div>
-  <div class="mdl-card__supporting-text">
-   
-    <div class="bio" id="bio">
-      <!--<div id="userpic"><img id="default_pic" class="profile_pic"></div>-->
-      <div class="mdl-card__title-text">
-          <span id="name" class="name"></span> - <span id="usertitle"></span>
-        </div>
-      Steem: <span id="steemagent"></span>
-      <div id="profilecardmini">
-            Age: <span id="age"></span> || Sign:<span id="sign"></span><br />
-            Gender: <span id="gender"></span> <br />
-            Location: <span id="location"></span><br />
-            Interests (tags): <div id="interests" class="interests"></div>
-     
-          <span>About Me:</span><div id="article" class="biofull"></div>
-        <div>Favorite Steemians: 
-          <div id="favorites"></div> 
-        </div>
-      </div>
-    </div>
-  
-  </div>
-</div>
-
-  <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">share</i>
-    </button>
-  </div>
-
-
-<!--
-
-
-
-
-
-
-## Mind 
-| Link      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-
-## Body                      
-| Link      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-
-## Spirit  
-| Link      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-
-
-if (blokify[0].skills !== undefined) {
-                    var skills = blokify[0].skills;
-                    skillsLog = skills.split(',');
-                    skillsLog.forEach(function (entry) {
-                        console.log(entry);
-                        entryy = entry.replace(/\s+/g, '');
-                        entryy = entryy.replace(/[^a-zA-Z0-9]/g, '');
-                        entryy = entryy.toLowerCase();
-                        var a = document.createElement('a');
-                        var linkText = document.createTextNode(entry);
-                        a.appendChild(linkText);
-                        a.title = entry;
-                        a.target = "_blank";
-                        a.href = "https://steempeak.com/created/" + entryy;
-                        document.getElementById("skills").appendChild(a);
-                    });
-                } else {
-                    console.log("no skills")
-                }
-
-
-
-
-
-
-for (var i = 0; i < blokzmeta.users.length; i++) {
-                    console.log("Friend " + i + " is @" + blokzmeta.users[i])
-                    id = "Friend" + i;
-                    document.getElementById(id).innerHTML = "<a href='http://steempeak.com/@" + blokzmeta.users[i] + "' target='_blank'>@" + blokzmeta.users[i] + "</a>";
-                }
-              --> 
+</script>
