@@ -35,9 +35,12 @@
   
     <div class="demo-card-square mdl-card mdl-shadow--2dp; width: 100%">
     <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text" id="cms" style="color: white">blokz/profile wizard</h2>
+        <h2 class="mdl-card__title-text" id="cms" style="color: white">blokz/profile update tool</h2>
+        
     </div>
+    <p><a href="../">BACK TO PROFILES</a></p>
     <div class="mdl-card__actions mdl-card--border " id="profileEdit">
+      
             <!-- Circles which indicates the steps of the form: -->
     <div style="text-align:center;margin-top:5px;margin-bottom:20px;">
         <div class="step" style="text-align: center"></div>
@@ -375,7 +378,7 @@ steem_keychain.requestPost(account_name, 'My Blokz Profile', body, '', '', json_
         console.log("FORM SUBMITTED");
         updateProfile();
         document.getElementById("subbie").style.display = "none";
-        document.getElementById("profileEdit").innerHTML = "Profile Update Submitted!";
+        document.getElementById("profileEdit").innerHTML = "Profile Update Submitted! (Please wait for the popup confirmation before leaving page)";
         return false;
       }
       // Otherwise, display the correct tab:
@@ -550,7 +553,7 @@ steem_keychain.requestPost(account_name, 'My Blokz Profile', body, '', '', json_
 <!-- SIGNATURE -->
 <div style="width: 50%; margin: 0 50%">
  
-    <div style="text-align: center;"><a href="https://blokz.io/">http://blokz.io/</a> <br />
+    <div style="text-align: center;"><a href="../../">http://blokz.io/</a> <br />
     This website is <a href="http://copyfree.org/" target="_blank">Copyfree</a>. <br />
     Souce Code: <a href="https://github.com/blokz/profile">blokz/profile</a>
 
