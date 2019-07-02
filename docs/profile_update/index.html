@@ -64,6 +64,13 @@
           <small>Job/Self Title</small><input class="mdl-textfield__input" type="text" id="usertitle">
             <label class="mdl-textfield__label" for="usertitle" id="usertitleLabel"></label>
         </div><br />
+
+        <div class="mdl-textfield mdl-js-textfield">
+          <small>Favorite Website:</small><input class="mdl-textfield__input" type="text" id="favsite">
+            <label class="mdl-textfield__label" for="favsite" id="favsiteLabel"></label>
+        </div><br />
+
+        
         
         <div class="mdl-textfield mdl-js-textfield">
           <small>Birth Year</small>
@@ -241,7 +248,7 @@
             <label class="mdl-textfield__label" for="postingKey"></label>
 
             <br />
-            <button onclick="steemkeytest()">Steem Keychain</button>
+            <!-- <button onclick="steemkeytest()">Steem Keychain</button>-->
         </div>
     </div>
     <br />
@@ -268,7 +275,7 @@ function steemkeytest() {
   console.log("keyring installed");
 
   // build profile data
-  var body = "A blokz profile, please click <a href='https://blokz.github.io/profile/?steem=" + document.getElementById('steemagent').value + "' target='_blank'>blokz.io/profile/?steem=" + document.getElementById('steemagent').value + "</a> to view.";
+  var body = "<img src='https://steemitimages.com/0x0/https://blokz.github.io/images/logo512.png'><br />A blokz profile, please click <a href='https://blokz.github.io/profile/?steem=" + document.getElementById('steemagent').value + "' target='_blank'>blokz.github.io/profile/?steem=" + document.getElementById('steemagent').value + "</a> to view.";
   var article = document.getElementById('article').value;
   var name = document.getElementById('name').value;
   var usertitle = document.getElementById('usertitle').value;
@@ -286,17 +293,17 @@ permlink = "blokzprofile";
   
   // profile build finished
 var json_mm = {
-      tags: ['blokz'],
-      app: 'blokz',
-      article: article,
-      name: name,
-      usertitle: usertitle,
-      birthyear: birthyear,
-      sign: sign,
-      gender: gender,
-      location: location,
-      interests: interests,
-      favorites: favorites
+      "tags": ['blokz'],
+      "app": 'blokz',
+      "article": article,
+      "name": name,
+      "usertitle": usertitle,
+      "birthyear": birthyear,
+      "sign": sign,
+      "gender": gender,
+      "location": location,
+      "interests": interests,
+      "favorites": favorites
     };
     json_mm = JSON.stringify(json_mm);
 
@@ -536,7 +543,7 @@ steem_keychain.requestPost(account_name, 'My Blokz Profile', body, '', '', json_
     </style>
 
 
-<script type="text/javascript" src="https://blokz.io/js/steem.js?version=1.07"></script>
+<script type="text/javascript" src="../../js/steem.js?version=1.11"></script>
 
       
 

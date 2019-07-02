@@ -58,6 +58,8 @@ function steemagentUp() {
       document.getElementById("interestsLabel").style.display = "none";
       document.getElementById("favorites").value = bitff.favorites;
       document.getElementById("favoritesLabel").style.display = "none";
+      document.getElementById("favsite").value = bitff.favsite;
+      document.getElementById("favsiteLabel").style.display = "none";
 
     } else {
       reject(err);
@@ -72,9 +74,10 @@ function steemagentUp() {
 function updateProfile() {
 
   // build profile data
-  var data = "A blokz profile, please click <a href='https://blokz.github.io/profile/?steem=" + document.getElementById('steemagent').value + "' target='_blank'>blokz.io/profile/?steem=" + document.getElementById('steemagent').value + "</a> to view.";
+  var data = "<img src='https://steemitimages.com/0x0/https://blokz.github.io/images/logo512.png'><br />A blokz profile, please click <a href='https://blokz.github.io/profile/?steem=" + document.getElementById('steemagent').value + "' target='_blank'>blokz.github.io/profile/?steem=" + document.getElementById('steemagent').value + "</a> to view.";
   var article = document.getElementById('article').value;
   var name = document.getElementById('name').value;
+  var favsite = document.getElementById('favsite').value;
   var usertitle = document.getElementById('usertitle').value;
   var birthyear = document.getElementById('birthyear').value;
   var sign = document.getElementById('sign').value;
@@ -82,7 +85,7 @@ function updateProfile() {
   var location = document.getElementById('location').value;
   var interests = document.getElementById('interests').value;
   var favorites = document.getElementById('favorites').value;
-  console.log("proof: " + article + name + usertitle + birthyear + sign + gender + location + interests + favorites);
+  console.log("proof: " + favsite + article + name + usertitle + birthyear + sign + gender + location + interests + favorites);
 
   // profile build finished
 
@@ -104,6 +107,7 @@ function updateProfile() {
       app: 'blokz',
       article: article,
       name: name,
+      favsite: favsite,
       usertitle: usertitle,
       birthyear: birthyear,
       sign: sign,
@@ -144,11 +148,28 @@ window.onload = function loading() {
 
     });
 
-    document.getElementById("steemagent").innerHTML = "<a href='http://steempeak.com/@" + user + "' target='_blank'>@" + user + "</a>";
-    steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, result) => {
+// get recent posts
+steem.api.getDiscussionsByAuthorBeforeDate(user, null, now, 3, (err, result) => {
+  var recent1 = JSON.parse(JSON.stringify(result[0]));
+  console.log(recent1.permlink);
+  document.getElementById("recent1").innerHTML = "1. <a href='http://steempeak.com/@" + user + "/"+ recent1.permlink +"' target='_blank'>" + recent1.permlink + "</a>";
+  
+  var recent2 = JSON.parse(JSON.stringify(result[1]));
+console.log(recent2.permlink);
+document.getElementById("recent2").innerHTML = "2. <a href='http://steempeak.com/@" + user + "/"+ recent2.permlink +"' target='_blank'>" + recent2.permlink + "</a>";
+   
+var recent3 = JSON.parse(JSON.stringify(result[2]));
+console.log(recent3.permlink);
+document.getElementById("recent3").innerHTML = "3. <a href='http://steempeak.com/@" + user + "/"+ recent3.permlink +"' target='_blank'>" + recent3.permlink + "</a>";
+   
+});
+
+
+document.getElementById("steemagent").innerHTML = "<a href='http://steempeak.com/@" + user + "' target='_blank'>@" + user + "</a>";
+steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, result) => {
 
       if (result.length >= 1) {
-        console.log("meep :" + result)
+        console.log("meep :" + result);
         var blokify = JSON.parse(JSON.stringify(result[0].body));
         var blokzmeta = JSON.parse((result[0].json_metadata));
         console.log(blokify);
@@ -164,6 +185,8 @@ window.onload = function loading() {
         document.getElementById("sign").innerHTML = bitff.sign;
         document.getElementById("location").innerHTML = bitff.location;
         document.getElementById("gender").innerHTML = bitff.gender;
+
+        document.getElementById("favsite").innerHTML = "<a href='" + bitff.favsite + "' target='_blank'>" + bitff.favsite + "</a>";
 
         // interests
         var skills = bitff.interests;
@@ -349,4 +372,4 @@ window.onload = function loading() {
 
 
 
-console.log("steem.js loaded");
+console.log("localhost steem.js loaded");
