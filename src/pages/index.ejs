@@ -78,12 +78,7 @@
             </div>
             <!--<div id="userpic"><img id="default_pic" class="profile_pic"></div>-->
             <span id="steemagent"></span>
-<div style="text-align: left; padding: 20px; margin: 10px">
-            <strong>Most recent steem Posts:</strong><small>
-<div id="recent1"></div>
-<div id="recent2"></div>
-<div id="recent3"></div></small><br />
-</div>
+
 
 <div id="profilecardmini">
              
@@ -105,10 +100,10 @@
 <strong>Sign:</strong><div style="text-align: center" id="sign"></div>
 <strong>Gender:</strong><div style="text-align: center" id="gender"></div>
 <strong>Location:</strong><div style="text-align: center" id="location"></div>
-<div>&nbsp;</div>
-<strong>Favorite Steemians: <br /><small style="color: gray; font-weight: 75">(Click Name or Avatar to open)</small>
-  <div id="favorites"></div> 
-</strong>
+<strong>About Me:</strong><div id="article" class="biofull"></div>
+<strong>#Interests & Communities:</strong>  
+<div id="interests" class="interests"></div>
+
 
 
 </div>
@@ -123,11 +118,20 @@
 <!-- -->
 <div style="text-align: left; padding-right: 5px"></div>
 <strong>Favorite Website:</strong>
-<div id="favsite" class="favsite"></div><br />
+<div id="favsite" class="favsite"></div>
+<div style="text-align: left;">
+  <strong>Recent Posts:</strong>
+<div id="recent1"></div>
+<div id="recent2"></div>
+<div id="recent3"></div>
+<div id="recentM"></div>
+</div>
 
-<strong>#Interests & Communities:</strong>  
-<div id="interests" class="interests"></div><br />
-<strong>About Me:</strong><div id="article" class="biofull"></div>
+<strong>Top Friends: <br /><small style="color: gray; font-weight: 75">(Click Name or Avatar to open)</small>
+  <div id="favorites"></div> 
+</strong>
+
+
         </div>
 
 <!-- -->
@@ -163,7 +167,12 @@
 
   
  <div class="external" style="background-color:white" >
-
+Welcome to blokz/profile, Please input a steem username or click one of the profiles below <hr />
+<div style="width: 200px; margin: auto;">
+<form id="frm1" action="/">
+  Steem UserName : <input type="text" name="steem" class="mdl-textfield__input" size="25" value="sn0n"><input type="submit" value="View" class="mdl-button mdl-js-button mdl-button--raised">
+</form> 
+</div>
   Load a profile below: <br />
   <!-- TODO: add dynamic list of users -->
   <a href="./?steem=sn0n">@sn0n</a><br />

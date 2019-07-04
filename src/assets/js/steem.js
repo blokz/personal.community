@@ -151,16 +151,17 @@ window.onload = function loading() {
 // get recent posts
 steem.api.getDiscussionsByAuthorBeforeDate(user, null, now, 3, (err, result) => {
   var recent1 = JSON.parse(JSON.stringify(result[0]));
-  console.log(recent1.permlink);
-  document.getElementById("recent1").innerHTML = "1. <a href='http://steempeak.com/@" + user + "/"+ recent1.permlink +"' target='_blank'>" + recent1.permlink + "</a>";
+  console.log(recent1);
+  document.getElementById("recent1").innerHTML = "1. <a href='http://steempeak.com/@" + user + "/"+ recent1.permlink +"' target='_blank'>" + recent1.title + "</a>";
   
   var recent2 = JSON.parse(JSON.stringify(result[1]));
 console.log(recent2.permlink);
-document.getElementById("recent2").innerHTML = "2. <a href='http://steempeak.com/@" + user + "/"+ recent2.permlink +"' target='_blank'>" + recent2.permlink + "</a>";
+document.getElementById("recent2").innerHTML = "2. <a href='http://steempeak.com/@" + user + "/"+ recent2.permlink +"' target='_blank'>" + recent2.title + "</a>";
    
 var recent3 = JSON.parse(JSON.stringify(result[2]));
 console.log(recent3.permlink);
-document.getElementById("recent3").innerHTML = "3. <a href='http://steempeak.com/@" + user + "/"+ recent3.permlink +"' target='_blank'>" + recent3.permlink + "</a>";
+document.getElementById("recent3").innerHTML = "3. <a href='http://steempeak.com/@" + user + "/"+ recent3.permlink +"' target='_blank'>" + recent3.title + "</a>";
+document.getElementById("recentM").innerHTML = "View More on <a href='http://steempeak.com/@" + user + "/' target='_blank'>steempeak.com/@"+user+"</a>";
    
 });
 
