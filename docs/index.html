@@ -26,6 +26,7 @@
   gtag('config', 'UA-2112936-2');
 </script>
 <link rel="shortcut icon" href="https://blokz.io/favicon.png"/>
+<link rel="manifest" href="./manifest.json">
 
 </head>
 
@@ -222,7 +223,18 @@ Welcome to blokz/profile, Please input a steem username or click one of the prof
 
   <script type="text/javascript" src="/js/steem.js?version=1.06"></script>
 
-      
+        <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+           .register('sw.js')
+           .then(function() { console.log("Service Worker Registered"); });
+    }
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+    </script> 
 
 
 <!-- ##### Footer ##### -->
