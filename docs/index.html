@@ -3,30 +3,20 @@
 <meta charset="utf-8">
 
 <head>
-  <title>/blokz/profile powered by STEEM</title>
+  <title>blokz/profile powered by STEEM</title>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-pink.min.css" />
-<script src="https://blokz.io/js/steem.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/steem/dist/steem.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/nedb/1.8.0/nedb.js"></script>
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <!-- blokz.github.io as cdn -->
 <link rel="stylesheet" href="https://blokz.io/css/styles.css?ver=1.0">
 <script src="https://blokz.io/js/blokz.js?ver=1.0"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2112936-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-2112936-2');
-</script>
-<link rel="shortcut icon" href="https://profile.blokz.io/favicon.png"/>
-<link rel="manifest" href="https://profile.blokz.io/manifest.json">
+<link rel="shortcut icon" href="https://blokz.io/favicon.png"/>
 
 </head>
 
@@ -132,12 +122,12 @@
         <span class="">
 <!-- -->
 <div style="border-right: 1px dashed; text-align: left; padding-right: 5px; min-width: 222px">
-<strong>Age:</strong> <div style="text-align: center" id="age"></div>
-<strong>Sign:</strong><div style="text-align: center" id="sign"></div>
-<strong>Gender:</strong><div style="text-align: center" id="gender"></div>
-<strong>Location:</strong><div style="text-align: center" id="location"></div>
-<strong>About Me:</strong><div id="article" class="biofull"></div>
-<strong>#Interests & Communities:</strong>  
+<strong id="strongAge">Age:</strong> <div style="text-align: center" id="age"></div>
+<strong id="strongSign">Sign:</strong><div style="text-align: center" id="sign"></div>
+<strong id="strongGender">Gender:</strong><div style="text-align: center" id="gender"></div>
+<strong id="strongLocation">Location:</strong><div style="text-align: center" id="location"></div>
+<strong id="strongAbout">About Me:</strong><div id="article" class="biofull"></div>
+<strong id="strongFollow">#Interests & Communities:</strong>  
 <div id="interests" class="interests"></div>
 
 
@@ -153,7 +143,7 @@
         <span class="" style="text-align: left; padding-right: 5px">
 <!-- -->
 <div style="text-align: left; padding-right: 5px"></div>
-<strong>Favorite Website:</strong>
+<strong id="strongWebsite">Favorite Website:</strong>
 <div id="favsite" class="favsite"></div>
 <div style="text-align: left;">
   <strong>Recent Posts:</strong>
@@ -163,7 +153,7 @@
 <div id="recentM"></div>
 </div>
 
-<strong>Top Friends: <br /><small style="color: gray; font-weight: 75">(Click Name or Avatar to open)</small>
+<strong id="strongFriends">Top Friends: <br /><small style="color: gray; font-weight: 75">(Click Name or Avatar to open)</small>
   <div id="favorites"></div> 
 </strong>
 
@@ -203,9 +193,9 @@
 
   
  <div class="external" style="background-color:white" >
-Welcome to blokz/profile, Please input a steem username or click one of the profiles below <hr />
+Welcome,.. to blokz/profile, Please input a steem username or click one of the profiles below <hr />
 <div style="width: 200px; margin: auto;">
-<form id="frm1" action="./">
+<form id="frm1" action="/">
   Steem UserName : <input type="text" name="steem" class="mdl-textfield__input" size="25" value="sn0n"><input type="submit" value="View" class="mdl-button mdl-js-button mdl-button--raised">
 </form> 
 </div>
@@ -223,18 +213,7 @@ Welcome to blokz/profile, Please input a steem username or click one of the prof
 
   <script type="text/javascript" src="/js/steem.js?version=1.06"></script>
 
-        <script>
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker
-           .register('sw.js')
-           .then(function() { console.log("Service Worker Registered"); });
-    }
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-    });
-    </script> 
+      
 
 
 <!-- ##### Footer ##### -->
@@ -249,7 +228,7 @@ Welcome to blokz/profile, Please input a steem username or click one of the prof
 <!-- SIGNATURE -->
 <div style="width: 50%; margin: 0 50%">
  
-    <div style="text-align: center;"><a href="../../">http://blokz.io/</a> <br />
+    <div style="text-align: center;"><a href="https://blokz.io/">https://blokz.io/</a> <br />
     This website is <a href="http://copyfree.org/" target="_blank">Copyfree</a>. <br />
     Souce Code: <a href="https://github.com/blokz/profile">blokz/profile</a>
 

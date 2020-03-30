@@ -1,6 +1,8 @@
 const year = new Date();
 const now = new Date().toISOString().split('.')[0];
 
+// steem.api.setOptions({ url: 'wss://api.hive.blog' });
+
 // this checks for url variables like ?steem=sn0n
 function getQueryVariable(variable) {
   var query = window.location.search.substring(1);
@@ -152,16 +154,21 @@ window.onload = function loading() {
 steem.api.getDiscussionsByAuthorBeforeDate(user, null, now, 3, (err, result) => {
   var recent1 = JSON.parse(JSON.stringify(result[0]));
   console.log(recent1);
-  document.getElementById("recent1").innerHTML = "1. <a href='http://steempeak.com/@" + user + "/"+ recent1.permlink +"' target='_blank'>" + recent1.title + "</a>";
+  var recent1date = recent1.created.slice(0, 10);
+  document.getElementById("recent1").innerHTML = "1. <a href='http://steempeak.com/@" + user + "/"+ recent1.permlink +"' target='_blank'>" + recent1.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent1date + "<br />";
   
   var recent2 = JSON.parse(JSON.stringify(result[1]));
 console.log(recent2.permlink);
-document.getElementById("recent2").innerHTML = "2. <a href='http://steempeak.com/@" + user + "/"+ recent2.permlink +"' target='_blank'>" + recent2.title + "</a>";
+
+var recent2date = recent2.created.slice(0, 10);
+document.getElementById("recent2").innerHTML = "2. <a href='http://steempeak.com/@" + user + "/"+ recent2.permlink +"' target='_blank'>" + recent2.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent2date + "<br />";
    
 var recent3 = JSON.parse(JSON.stringify(result[2]));
 console.log(recent3.permlink);
-document.getElementById("recent3").innerHTML = "3. <a href='http://steempeak.com/@" + user + "/"+ recent3.permlink +"' target='_blank'>" + recent3.title + "</a>";
-document.getElementById("recentM").innerHTML = "View More on <a href='http://steempeak.com/@" + user + "/' target='_blank'>steempeak.com/@"+user+"</a>";
+var recent3date = recent3.created.slice(0, 10);
+
+document.getElementById("recent3").innerHTML = "3. <a href='http://steempeak.com/@" + user + "/"+ recent3.permlink +"' target='_blank'>" + recent3.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent3date + "<br />";
+document.getElementById("recentM").innerHTML = "<br /><div>View More on <a href='http://steempeak.com/@" + user + "/' target='_blank'>steempeak.com/@"+user+"</a></div><hr />";
    
 });
 
@@ -326,23 +333,15 @@ steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, r
       } else {
 
         console.log("user does not exist! or something went wrong")
-        document.getElementById("profilecardmini").style.display = "none";
-        var para = document.createElement("div");                 // Create a <p> element
-        para.innerHTML = "This user is not yet on blokz/profile";                // Insert text
-        document.getElementById("bio").appendChild(para);     // Append <p> to <div> with id="myDIV"                
-
-        var vadd = document.createElement('button');
-        vadd.className = "mdl-chip";
-        vadd.id = "back1";
-        vadd.setAttribute("onclick", "window.history.back();");
-        document.getElementById("bio").appendChild(vadd);
-        var sadd = document.createElement('span');
-        sadd.className = "mdl-chip__text";
-        sadd.id = "back2";
-        document.getElementById("back1").appendChild(sadd);
-
-        var t = document.createTextNode("back");
-        document.getElementById("back2").appendChild(t);
+        // document.getElementById("profilecardmini").style.display = "none";
+        document.getElementById("strongAge").style.display = "none";
+        document.getElementById("strongSign").style.display = "none";
+        document.getElementById("strongGender").style.display = "none";
+        document.getElementById("strongLocation").style.display = "none";
+        document.getElementById("strongAbout").style.display = "none";
+        document.getElementById("strongFollow").style.display = "none";
+        document.getElementById("strongFriends").style.display = "none";
+        document.getElementById("strongWebsite").style.display = "none";
       }
 
 

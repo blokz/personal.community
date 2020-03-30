@@ -1,8 +1,6 @@
 {
-    "short_name": "/blokz/profile",
-    "name": "/blokz/profile",
-    "short_name": "blokz/profile",
-    "name": "blokz/profile",
+    "short_name": "blokz.io",
+    "name": "blokz demo",
     "icons": [
       {
         "src": "images/logo192.png",
