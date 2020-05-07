@@ -256,7 +256,7 @@ steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, r
 
           var favfriend = document.createElement("div"); 
           favfriend.id = entryy;
-          favfriend.setAttribute("onclick", "window.location.href='./?steem=" + entryy + "';");
+          favfriend.setAttribute("onclick", "window.location.href='./?hive=" + entryy + "';");
           favfriend.style = "display: inline-block; padding: 5px; margin: 15px auto;width: 100px;  text-align: center"
           document.getElementById("favorites").appendChild(favfriend);
           
