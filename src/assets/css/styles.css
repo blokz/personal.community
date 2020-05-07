@@ -1,3 +1,66 @@
+
+
+  .demo-card-wide.mdl-card {
+    width: 100%;
+    margin: 10px auto;  
+
+    background-color: white;
+  }
+  .preopreo {
+    color: #fff;
+    min-height: 213px;
+    background-color: #0234ce;
+    background: center / cover;
+  }
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+  
+  .profimg {
+   border: 3px solid white;
+    border-radius: 50%;
+    background-color: black;
+  }
+
+  .bio {
+    text-align: center;
+    margin: auto;
+  }
+  .biofull {
+    text-align: left;
+    
+  }
+
+.avatar {
+  height: 64px;
+  width: 64px;
+}
+
+
+.name {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+
+
+.mdl-card__media {
+	margin: 0;
+}
+.mdl-card__media > img {
+	max-width: 100%;
+}
+.mdl-card__actions {
+	display: flex;
+	box-sizing:border-box;
+	align-items: center;
+}
+.mdl-card__actions > .mdl-button--icon {
+	margin-right: 3px;
+	margin-left: 3px;
+}
+
+
 .profile_pic {
   width: 48px;
   }
@@ -14,12 +77,7 @@
   display: list-item;
  }
  
-  .external {
-  border: 1px dashed;
-  margin: 3px; 
-  padding: 3px;
-  }
-  
+ 
 .name {
 margin-bottom: 0px
 }
@@ -190,9 +248,44 @@ acronym, .titleTip {
 
 /* ##### Main Copy ##### */
 
+#main-copy {
+  background-color: white;
+  text-align: justify;
+  line-height: 1.5em;
+  margin: 0 0 0 0em;
+  padding: 0.5mm 5mm 5mm 5mm;
+  border-left: 1px solid rgb(153,153,153);
+}
+
+#main-copy p {
+  margin: 1em 1ex 2em 1ex;
+  padding: 0;
+}
+
+#main-copy a {
+  color: rgb(0,102,204);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+#main-copy a:hover {
+  text-decoration: none;
+}
 
 
 
+#main-copy .topOfPage {
+  background-color: transparent;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 2.5ex 1ex 0 0;  /* For MSIE */
+  padding: 0;
+  float: right;
+}
+
+#main-copy > .topOfPage {
+  margin: 2.75ex 1ex 0 0;  /* For fully standards-compliant user agents */
+}
 
 dl {
   margin: 1em 1ex 2em 1ex;
@@ -253,6 +346,25 @@ dd {
  background: rgb(100,135,220);
 }
 
+.mdl-card__media {
+  margin: 0;
+
+}
+.mdl-card__media > img {
+	max-width: 100%;
+  background: whitesmoke;
+}
+.mdl-card__actions {
+	display: flex;
+	box-sizing:border-box;
+	align-items: center;
+}
+.mdl-card__actions > .mdl-button--icon {
+	margin-right: 3px;
+	margin-left: 3px;
+}
+
+
 .icons {
     font-size: 20px;
     text-decoration: none;
@@ -261,4 +373,8 @@ dd {
 
 .label {
  color: white;
+}
+
+.mdl-grid {
+	max-width: 90%;
 }
