@@ -4,6 +4,6 @@ module.exports = {
     outputPath: './docs'
   },
   site: {
-    title: 'blokz/profile powered by STEEM'
+    title: 'blokz/profile powered by HIVE'
   }
 };

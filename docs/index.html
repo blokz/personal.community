@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 <head>
-  <title>blokz/profile powered by STEEM</title>
+  <title>blokz/profile powered by HIVE</title>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -15,14 +15,12 @@
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <!-- blokz.github.io as cdn -->
 <link rel="stylesheet" href="./css/styles.css?ver=1.0">
-<script src="https://profile.blokz.io/js/blokz.js?ver=1.0"></script>
+<script src="../js/blokz.js?ver=1.0"></script>
 <link rel="shortcut icon" href="https://blokz.io/favicon.png"/>
 
 </head>
 
 <body>
-  
-
   
     
 
@@ -125,10 +123,8 @@
 
 
   
- <div class="external" style="background-color:white; padding: 25px" >
-
-
-  <main class="mdl-layout__content">
+ <div id="blokzmenu" class="external" style="display: none;">
+    <main class="mdl-layout__content">
     <!-- CARD TEST-->
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
      <div class="mdl-card__title">
@@ -159,6 +155,13 @@
    </main>
 
    </div>
+
+
+
+
+   <button id="button" onclick="blokzmenu()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+    <img src="../favicon.png">
+  </button>
       
 
 

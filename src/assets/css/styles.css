@@ -1,4 +1,12 @@
-
+.external {
+  background-color:white; 
+  padding: 25px; 
+  float: right; 
+  position: fixed; 
+  border: 3px solid teal;
+  bottom:100px;
+  right: 100px;
+}
 
   .demo-card-wide.mdl-card {
     width: 100%;
@@ -377,4 +385,11 @@ dd {
 
 .mdl-grid {
 	max-width: 90%;
+}
+
+
+#button {
+  position:fixed;
+  bottom:25px;
+  right:25px;
 }

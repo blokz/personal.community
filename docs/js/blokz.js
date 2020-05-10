@@ -15,6 +15,8 @@ function getQueryVariable(variable) {
 }
 
 // 
+user = localStorage.getItem("hive");
+
 if (getQueryVariable("steem") !== false) {
   user = getQueryVariable("steem");
   console.log(user + " connected");
@@ -22,8 +24,11 @@ if (getQueryVariable("steem") !== false) {
 
 if (getQueryVariable("hive") !== false) {
   user = getQueryVariable("hive");
+
+localStorage.setItem("hive", user);
   console.log(user + " connected");
 }
+
 
 
 // search username on lookup
@@ -374,3 +379,13 @@ steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, r
 
 
 console.log("localhost steem.js loaded");
+
+
+function blokzmenu() {
+  var x = document.getElementById("blokzmenu");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
