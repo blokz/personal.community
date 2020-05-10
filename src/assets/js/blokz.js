@@ -15,7 +15,13 @@ function getQueryVariable(variable) {
 }
 
 // 
+if (localStorage.getItem("hive")!==null) {
 user = localStorage.getItem("hive");
+console.log(typeof user)
+} else {
+  console.log("user does not exist! or something went wrong");
+
+}
 
 if (getQueryVariable("steem") !== false) {
   user = getQueryVariable("steem");
