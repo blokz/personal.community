@@ -1,7 +1,7 @@
 const year = new Date();
 const now = new Date().toISOString().split('.')[0];
 
-steem.api.setOptions({ url: 'https://anyx.io' });
+hive.api.setOptions({ url: 'https://anyx.io' });
 
 // this checks for url variables like ?steem=sn0n
 function getQueryVariable(variable) {
@@ -15,9 +15,9 @@ function getQueryVariable(variable) {
 }
 
 // 
-if (localStorage.getItem("hive")!==null) {
-user = localStorage.getItem("hive");
-console.log(typeof user)
+if (localStorage.getItem("hive") !== null) {
+  user = localStorage.getItem("hive");
+  console.log(typeof user)
 } else {
   console.log("user does not exist! or something went wrong");
 
@@ -31,7 +31,7 @@ if (getQueryVariable("steem") !== false) {
 if (getQueryVariable("hive") !== false) {
   user = getQueryVariable("hive");
 
-localStorage.setItem("hive", user);
+  localStorage.setItem("hive", user);
   console.log(user + " connected");
 }
 
@@ -42,7 +42,7 @@ function steemagentUp() {
   console.log("TRIGGERED!!!");
   let steemagent = document.getElementById("steemagent").value;
   console.log(steemagent);
-  steem.api.getDiscussionsByAuthorBeforeDate(steemagent, 'blokzprofile', now, 1, (err, result) => {
+  hive.api.getDiscussionsByAuthorBeforeDate(steemagent, 'blokzprofile', now, 1, (err, result) => {
 
     // populate data
     if (result) {
@@ -111,7 +111,7 @@ function updateProfile() {
 
 
 
-  steem.broadcast.comment(
+  hive.broadcast.comment(
     document.getElementById('postingKey').value,
     '', //author
     'blokzprofile', //firsttag
@@ -154,7 +154,7 @@ window.onload = function loading() {
   if (typeof user !== 'undefined') {
 
 
-    steem.api.getAccounts([user], function (err, result) {
+    hive.api.getAccounts([user], function (err, result) {
       console.log(err, result);
       profdata = JSON.parse(result[0].json_metadata);
       console.log(profdata);
@@ -166,31 +166,31 @@ window.onload = function loading() {
 
     });
 
-// get recent posts
-steem.api.getDiscussionsByAuthorBeforeDate(user, null, now, 3, (err, result) => {
-  var recent1 = JSON.parse(JSON.stringify(result[0]));
-  console.log(recent1);
-  var recent1date = recent1.created.slice(0, 10);
-  document.getElementById("recent1").innerHTML = "1. <a href='http://peakd.com/@" + user + "/"+ recent1.permlink +"' target='_blank'>" + recent1.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent1date + "<br />";
-  
-  var recent2 = JSON.parse(JSON.stringify(result[1]));
-console.log(recent2.permlink);
+    // get recent posts
+    hive.api.getDiscussionsByAuthorBeforeDate(user, null, now, 3, (err, result) => {
+      var recent1 = JSON.parse(JSON.stringify(result[0]));
+      console.log(recent1);
+      var recent1date = recent1.created.slice(0, 10);
+      document.getElementById("recent1").innerHTML = "1. <a href='http://peakd.com/@" + user + "/" + recent1.permlink + "' target='_blank'>" + recent1.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent1date + "<br />";
 
-var recent2date = recent2.created.slice(0, 10);
-document.getElementById("recent2").innerHTML = "2. <a href='http://peakd.com/@" + user + "/"+ recent2.permlink +"' target='_blank'>" + recent2.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent2date + "<br />";
-   
-var recent3 = JSON.parse(JSON.stringify(result[2]));
-console.log(recent3.permlink);
-var recent3date = recent3.created.slice(0, 10);
+      var recent2 = JSON.parse(JSON.stringify(result[1]));
+      console.log(recent2.permlink);
 
-document.getElementById("recent3").innerHTML = "3. <a href='http://peakd.com/@" + user + "/"+ recent3.permlink +"' target='_blank'>" + recent3.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent3date + "<br />";
-document.getElementById("recentM").innerHTML = "<br /><div>View More on <a href='http://peakd.com/@" + user + "/' target='_blank'>peakd.com/@"+user+"</a></div><hr />";
-   
-});
+      var recent2date = recent2.created.slice(0, 10);
+      document.getElementById("recent2").innerHTML = "2. <a href='http://peakd.com/@" + user + "/" + recent2.permlink + "' target='_blank'>" + recent2.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent2date + "<br />";
+
+      var recent3 = JSON.parse(JSON.stringify(result[2]));
+      console.log(recent3.permlink);
+      var recent3date = recent3.created.slice(0, 10);
+
+      document.getElementById("recent3").innerHTML = "3. <a href='http://peakd.com/@" + user + "/" + recent3.permlink + "' target='_blank'>" + recent3.title + "</a> <br /><span>&nbsp;</span>Posted on " + recent3date + "<br />";
+      document.getElementById("recentM").innerHTML = "<br /><div>View More on <a href='http://peakd.com/@" + user + "/' target='_blank'>peakd.com/@" + user + "</a></div><hr />";
+
+    });
 
 
-document.getElementById("steemagent").innerHTML = "<a href='http://peakd.com/@" + user + "' target='_blank'>@" + user + "</a>";
-steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, result) => {
+    document.getElementById("steemagent").innerHTML = "<a href='http://peakd.com/@" + user + "' target='_blank'>@" + user + "</a>";
+    hive.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, result) => {
 
       if (result.length >= 1) {
         console.log("meep :" + result);
@@ -265,26 +265,26 @@ steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, r
 
 
 
-          var favfriend = document.createElement("div"); 
-          favfriend.id = entryy;
+          var favfriend = document.createElement("div");
+          favfriend.id = entryy + "_";
           favfriend.setAttribute("onclick", "window.location.href='./?hive=" + entryy + "';");
           favfriend.style = "display: inline-block; padding: 5px; margin: 15px auto;width: 100px;  text-align: center"
           document.getElementById("favorites").appendChild(favfriend);
-          
+
 
 
 
 
           var para = document.createElement("div");                 // Create a <p> element
           para.id = favfriend.id + "sub";
-          var ffs = document.createElement("div");     
+          var ffs = document.createElement("div");
           ffs.id = favfriend.id;
           var ffsName = document.createElement("div");
           ffsName.id = favfriend.id + "ffsName";
 
           var ff = favfriend.id + "NEW";   // placeholder
 
-          document.getElementById(entryy).appendChild(para);   
+          document.getElementById(entryy + "_").appendChild(para);
 
           document.getElementById(ffs.id).appendChild(ffsName);
 
@@ -298,11 +298,11 @@ steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, r
           imageParent.appendChild(image);
 
 
-          document.getElementById(entryy).appendChild(ffsName);  
-          ffsName.innerHTML = "<small id='"+ff+"'>"+entryy+"</small>"; 
+          document.getElementById(entryy + "_").appendChild(ffsName);
+          ffsName.innerHTML = "<small id='" + ff + "'>" + entryy + "</small>";
 
-          
-            
+
+
 
           /*
           var vadd = document.createElement('button');
@@ -384,7 +384,7 @@ steem.api.getDiscussionsByAuthorBeforeDate(user, 'blokzprofile', now, 1, (err, r
 
 
 
-console.log("localhost steem.js loaded");
+console.log("localhost blokz.js loaded");
 
 
 function blokzmenu() {
