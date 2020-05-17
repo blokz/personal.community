@@ -15,13 +15,7 @@ function getQueryVariable(variable) {
   }
   return (false);
 }
-// set user to localstorage user
-if (localStorage.getItem("hive") !== null) {
-  user = localStorage.getItem("hive");
-  console.log(typeof user)
-} else {
-  console.log("user does not exist! or something went wrong");
-}
+
 // fallback for old steem links
 if (getQueryVariable("steem") !== false) {
   user = getQueryVariable("steem");
@@ -391,7 +385,62 @@ function updateProfile() {
 
 
 
+// 
+// hivesigner code
+function signconnect() {
+  var data = "<img src='https://blokz.github.io/images/logo512.png'><br />A blokz profile, please click <a href='https://blokz.github.io/profile/?hive=" + document.getElementById('hiveuser').value + "' target='_blank'>blokz.github.io/profile/?hive=" + document.getElementById('hiveuser').value + "</a> to view.";
+  var article = document.getElementById('article').value;
+  var name = document.getElementById('name').value;
+  var favsite = document.getElementById('favsite').value;
+  var usertitle = document.getElementById('usertitle').value;
+  var birthyear = document.getElementById('birthyear').value;
+  var sign = document.getElementById('sign').value;
+  var gender = document.getElementById('gender').value;
+  var location = document.getElementById('location').value;
+  var interests = document.getElementById('interests').value;
+  var favorites = document.getElementById('favorites').value;
+  console.log("proof: " + favsite + article + name + usertitle + birthyear + sign + gender + location + interests + favorites);
 
+
+  var client = new hivesigner.Client({
+    app: 'blokz',
+    callbackURL: '127.0.0.1',
+    scope: ['vote', 'comment']
+  });
+  
+  var params = {};
+  
+  // The "username" parameter is required prior to log in for "Hive Keychain" users.
+  if (hivesigner.useHiveKeychain) {
+    params = { username: hiveuser };
+  }
+  
+
+  parentAuthor = '';
+  parentPermlink = "blokzprofile" ;
+  author = document.getElementById('hiveuser').value;
+  permlink = "blokzprofile"  ;
+  title = "My Blokz Profile";
+  body =  data;
+  
+  client.comment(parentAuthor, parentPermlink, author, permlink, title, body, {
+      tags: ['blokz'],
+      app: 'blokz',
+      article: article,
+      name: name,
+      favsite: favsite,
+      usertitle: usertitle,
+      birthyear: birthyear,
+      sign: sign,
+      gender: gender,
+      location: location,
+      interests: interests,
+      favorites: favorites
+    }, function (err, res) {
+    console.log(err, res)
+  });
+  
+  }
 
 
 

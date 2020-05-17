@@ -1,0 +1,37 @@
+<script src="https://cdn.jsdelivr.net/npm/hivesigner"></script>
+
+
+<script>
+window.onload = function loading() {
+
+var client = new hivesigner.Client({
+  app: 'blokz',
+  callbackURL: '127.0.0.1',
+  scope: ['vote', 'comment']
+});
+
+var params = {};
+
+// The "username" parameter is required prior to log in for "Hive Keychain" users.
+if (hivesigner.useHiveKeychain) {
+  params = { username: 'sn0n' };
+}
+
+client.login(params, function(err, token) {
+  console.log(err, token)
+});
+
+parentAuthor = ''
+parentPermlink = "blokzprofile" 
+author = 'sn0n'
+permlink = "blokzprofile"  
+title = "My Blokz Profile test"
+body =  "testttt"
+jsonMetadata = "{ tags: ['blokz'], }";
+
+client.comment(parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, res) {
+  console.log(err, res)
+});
+
+}
+</script>
