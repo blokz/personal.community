@@ -16,6 +16,18 @@ function getQueryVariable(variable) {
   return (false);
 }
 
+if (getQueryVariable("access_token") !== false) {
+  console.log("TOKEN FOUND: " + getQueryVariable("access_token"));
+  hivesigner.setAccessToken = (getQueryVariable("access_token"));
+}
+
+// set user to localstorage user
+if (localStorage.getItem("hive") !== null) {
+  user = localStorage.getItem("hive");
+  console.log(typeof user)
+} else {
+  console.log("user does not exist! or something went wrong");
+}
 // fallback for old steem links
 if (getQueryVariable("steem") !== false) {
   user = getQueryVariable("steem");

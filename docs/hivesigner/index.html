@@ -23,14 +23,15 @@
   
     <script src="https://cdn.jsdelivr.net/npm/hivesigner"></script>
 
+<button onclick="hivelogin()">hivesigner login</button> 
 
 <script>
-window.onload = function loading() {
 
+state = "/";
 var client = new hivesigner.Client({
   app: 'blokz',
-  callbackURL: '127.0.0.1',
-  scope: ['vote', 'comment']
+  callbackURL: 'http://127.0.0.1:3000',
+  scope: ['vote','comment','comment_options'],
 });
 
 var params = {};
@@ -40,24 +41,24 @@ if (hivesigner.useHiveKeychain) {
   params = { username: 'sn0n' };
 }
 
+var link = client.getLoginURL(state);
+console.log("your login link is: " + link)
+
+// https://hivesigner.com/oauth2/authorize?client_id=peakd.app&redirect_uri=https%3A%2F%2Fpeakd.com%2Fcallback%2Fhivesigner&scope=vote,comment,comment_options,offline,custom_json,claim_reward_balance&response_type=code&state=/
+
+function hivelogin() {
 client.login(params, function(err, token) {
   console.log(err, token)
+
 });
-
-parentAuthor = ''
-parentPermlink = "blokzprofile" 
-author = 'sn0n'
-permlink = "blokzprofile"  
-title = "My Blokz Profile test"
-body =  "testttt"
-jsonMetadata = "{ tags: ['blokz'], }";
-
-client.comment(parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, res) {
-  console.log(err, res)
-});
-
 }
+
 </script>
+
+
+
+
+
 
       
 
