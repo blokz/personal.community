@@ -257,14 +257,19 @@
 </div>
 
 <script>
-  // steem keychain integrations
+// Hive keychain & HiveSigner integrations
+function steemkeytest(){
+  if(window.hive_keychain){
+    //Keychain is installed
+    keychain()
+  } else{
+    hivesigner()
+  }
+}
 
-  function steemkeytest() {
-    if (window.steem_keychain) {
-      // Steem Keychain extension installed...
-      console.log("keyring installed");
 
-      // build profile data
+function keychain(){
+        // build profile data
       var body = "<img src='https://blokz.github.io/images/logo512.png'><br />A blokz profile, please click <a href='https://blokz.github.io/profile/?hive=" + document.getElementById('steemagent').value + "' target='_blank'>blokz.github.io/profile/?hive=" + document.getElementById('steemagent').value + "</a> to view.";
       var article = document.getElementById('article').value;
       var name = document.getElementById('name').value;
@@ -323,14 +328,41 @@
       steem_keychain.requestPost(account_name, 'My Blokz Profile', body, '', '', json_mm, "blokzprofile", comment_options, function (response) {
         console.log(response);
       });
+}
 
-    } else {
-      // Steem Keychain extension not installed...
-      console.log("keyring not installed");
+function hivesigner() {
+  var article = document.getElementById('article').value;
+  var name = document.getElementById('name').value;
+  var favsite = document.getElementById('favsite').value;
+  var usertitle = document.getElementById('usertitle').value;
+  var birthyear = document.getElementById('birthyear').value;
+  var sign = document.getElementById('sign').value;
+  var gender = document.getElementById('gender').value;
+  var location = document.getElementById('location').value;
+  var interests = document.getElementById('interests').value;
+  var favorites = document.getElementById('favorites').value;
+  var data = "<img src='https://blokz.github.io/images/logo512.png'><br />A blokz profile, please click <a href='https://blokz.github.io/profile/?hive=" + document.getElementById('hiveuser').value + "' target='_blank'>blokz.github.io/profile/?hive=" + document.getElementById('hiveuser').value + "</a> to view.";
 
-    }
-  };
-
+  if(setAccessToken()){
+    let author = document.getElementById('hiveuser').value
+    hs_helper_comment('', 'blokz', author, 'blokzprofile', 'My Blokz Profile', data, {
+      tags: ['blokz'],
+      app: 'blokz',
+      article: article,
+      name: name,
+      favsite: favsite,
+      usertitle: usertitle,
+      birthyear: birthyear,
+      sign: sign,
+      gender: gender,
+      location: location,
+      interests: interests,
+      favorites: favorites
+    })
+  } else {
+    hs_helper_login()
+  }
+};
 
 
 
