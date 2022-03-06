@@ -941,7 +941,8 @@ if (getQueryVariable("post") !== false) {
 function buildprofile(hiveuser) {
 
 
-  
+
+
   let profile = document.getElementById('TempProfile');
   let display = document.getElementById('profile');
   display.appendChild(profile.content.cloneNode(true));
@@ -1226,6 +1227,15 @@ function buildprofile(hiveuser) {
     hidecomm();
   });
   document.title = hiveuser + "'s personal.community profile";
+
+
+  if (hiveuser == localStorage.getItem('hive')) {
+    // begin operation: HUB
+    console.log('this is the start of the main hub for browse as');
+    //document.getElementById('bio').style.display = "none";
+    //document.getElementById('admin').innerHTML = "welcome user";
+  }
+
 }
 
 
