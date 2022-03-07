@@ -258,6 +258,14 @@ function genTags(item, index) {
   document.getElementById("display").innerHTML += "<a href='?tag=" + item + "'>" + item + "</a> &nbsp;";
 }
 
+function genChips(item, index) {
+  document.getElementById("display").innerHTML += "<a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='?tag=" + item + "'><span class='mdl-chip__text'>&nbsp; #" + item + "&nbsp;</span></a>";
+
+
+
+}
+
+
 function hiveuserUp() {
   // console.log("TRIGGERED!!!");
   let hiveuserUP = document.getElementById("hiveuser").value;
@@ -292,7 +300,7 @@ function hiveuserUp() {
 }
 
 function updateProfile() {
-  let data = "<img src='https://personal.community/images/logo512.png'><br />I've created a <a href='https://personal.community'>personal.community</a> profile, please check it out here:<br /> <a href='https://personal.community/?hive=" + document.getElementById('hiveuser').value + "' target='_blank'>personal.community/?hive=" + document.getElementById('hiveuser').value + "</a>";
+  let data = "<img src='https://personal.community/images/logo512.png'><br />I've created a profile on <a href='https://personal.community'>personal.community</a>, please check it out here:<br /> <a href='https://personal.community/@" + document.getElementById('hiveuser').value + "' target='_blank'>personal.community/@" + document.getElementById('hiveuser').value + "</a>";
   let article = easyMDE.value();
   //let name = document.getElementById('name').value;
   //let favsite = document.getElementById('favsite').value;
@@ -739,18 +747,18 @@ function displayPost() {
 
     document.getElementById("display").innerHTML += sanipost;
     // console.log("SANITATION TEST post output" + sanipost);
-    document.getElementById("display").innerHTML += "<div id='commentTags' style='border-top: 1px solid'>tags: </div>";
+    document.getElementById("display").innerHTML += "<div id='commentTags' style='border-top: 1px solid'>Topics:  </div>";
     let jsonTAGS = JSON.parse(result.json_metadata);
     console.log("jsonTAGS" + JSON.stringify(jsonTAGS));
     if (jsonTAGS.tags === undefined) {
       document.getElementById("commentTags").style.display = "none";
     } else {
-      jsonTAGS.tags.forEach(genTags);
+      jsonTAGS.tags.forEach(genChips);
     }
 
     // TODO : color reaction 
     let percentage = "13"
-    document.getElementById("display").innerHTML += "<hr /><span style='font-size:1em'>Reaction: </span> <span class='material-icons' style='font-size:1em' onClick='upvote(`" + permlink + "`,`" + author + "`,`" + percentage + "`,`thumbs`)' id='thumbs'>thumb_up</span> ";
+    document.getElementById("display").innerHTML += "<hr /><span style='font-size:1em'>Acknowledge </span> <span class='material-icons' style='font-size:1em' onClick='upvote(`" + permlink + "`,`" + author + "`,`" + percentage + "`,`thumbs`)' id='thumbs'>thumb_up</span> ";
     let findVoter = JSON.stringify(result.active_votes);
     console.log(findVoter);
     if (findVoter.search(localStorage.getItem("hive")) > 0) {
@@ -1044,7 +1052,7 @@ function buildprofile(hiveuser) {
       // TODO : color reaction 
       let percentage = "13"
 
-      document.getElementById("blog").innerHTML += "<div style='margin: 1em; border: 1px solid grey; box-shadow: 1px 1px; text-align: left; padding-left: 1em;'><h4><a href='?post=" + hiveuser + "/" + result[i].permlink + "'>" + result[i].title + "</a></h4>" +
+      document.getElementById("blog").innerHTML += "<div style='max-width: 480px; margin: 1em; border: 1px solid grey; box-shadow: 1px 1px; text-align: left; padding-left: 1em;'><h4><a href='?post=" + hiveuser + "/" + result[i].permlink + "'>" + result[i].title + "</a></h4>" +
         "" + postedon + "<div style='overflow: hidden;'>" + postdesc + "</div>" +
         "<div style='margin-top: 1em; min-width: 50%; text-align: right; padding: .25em'><span style='font-size:1em'>Acknowledge </span> <span class='material-icons' style='font-size:1em; cursor: pointer;' onClick='upvote(`" + result[i].permlink + "`,`" + result[i].author + "`,`" + percentage + "`,`" + id + "`)' id='" + id + "'>thumb_up</span> " +
         "</div></div>";
@@ -1232,8 +1240,14 @@ function buildprofile(hiveuser) {
   if (hiveuser == localStorage.getItem('hive')) {
     // begin operation: HUB
     console.log('this is the start of the main hub for browse as');
-    //document.getElementById('bio').style.display = "none";
-    //document.getElementById('admin').innerHTML = "welcome user";
+    let admin = document.getElementById('admin');
+    let top8friends = document.getElementById('top8friends');
+    document.getElementById('bio').style.display = "none";
+    document.getElementById('admin').innerHTML = "<h1 style='border-bottom: 1px solid black'>The Hub</h1>";
+    admin.appendChild(fltrt);
+    admin.appendChild(top8friends);
+    document.getElementById('admin').style = "padding-left: 2em; padding-right: 2em;"
+    document.getElementById('top8friends').style = "width: 100%"
   }
 
 }
