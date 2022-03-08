@@ -7,7 +7,7 @@
 <!-- show menu button -->
 <button id="blokzmenu" onclick="blokzmenu()" class="mdl-button mdl-js-button mdl-button--fab"
   style="background-color: #ddd">
-  <img src="../favicon.png" alt="logo">
+  <img src="/favicon.png" alt="logo">
 </button>
 
 
@@ -46,7 +46,7 @@
       </div>
     </form>
 
-    <a href="https://personal.community">personal.community</a> is a <a href="../?hive=blokz"><img src="https://blokz.io/favicon.png" alt="blokz logo" style="height:16px" />blokz</a>
+    <a href="https://personal.community">personal.community</a> is a <a href="/?hive=blokz"><img src="https://blokz.io/favicon.png" alt="blokz logo" style="height:16px" />blokz</a>
     project. <br /> be well.
 
   </div>
@@ -58,7 +58,7 @@
 <script>
   if('serviceWorker' in navigator) {
     navigator.serviceWorker
-         .register('../sw.js')
+         .register('/sw.js')
          .then(function() { console.log("Service Worker Registered"); });
   }
   let deferredPrompt;

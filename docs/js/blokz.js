@@ -146,7 +146,7 @@ function replyClick(author, commentpermlink) {
     } 
     */
 
-  window.location.href = "../?newpost=true&author=" + author + "&permlink=" + commentpermlink;
+  window.location.href = "/?newpost=true&author=" + author + "&permlink=" + commentpermlink;
 
 }
 
@@ -164,7 +164,7 @@ function words(str) {
 
 
 function logout() {
-  let url = "../";
+  let url = "/";
   localStorage.removeItem('hive');
   localStorage.removeItem('verified');
   localStorage.removeItem('hiveKeychainVerified');
@@ -383,7 +383,7 @@ function updateProfile() {
 
       //  console.log('hold tight')
       setTimeout(() => {
-        let url = "../?hive=" + postAs;
+        let url = "/?hive=" + postAs;
         window.location.href = url;
       }, 8000);
 
@@ -494,7 +494,7 @@ function quickReply() {
 
     //  console.log('hold tight')
       setTimeout(() => {
-        let url = "../?post=" + postAs + "/" + postpermLink.replace(/[^A-Za-z]+/g, '-').toLowerCase() + "pc";
+        let url = "/?post=" + postAs + "/" + postpermLink.replace(/[^A-Za-z]+/g, '-').toLowerCase() + "pc";
         window.location.href = url;
       }, 8000);
 
@@ -601,7 +601,7 @@ function createPost() {
 
     //  console.log('hold tight')
       setTimeout(() => {
-        let url = "../?post=" + postAs + "/" + postpermLink.replace(/[^A-Za-z]+/g, '-').toLowerCase() + "pc";
+        let url = "/?post=" + postAs + "/" + postpermLink.replace(/[^A-Za-z]+/g, '-').toLowerCase() + "pc";
         window.location.href = url;
       }, 8000);
 
@@ -628,16 +628,16 @@ function createPost() {
         if (err)
           document.getElementById("displayUpdate").innerHTML = "<h3>something went wrong...  try again</h3>" + err;
         else {
-          document.getElementById("displayUpdate").innerHTML = "<h3>Redirecting page in 8 seconds<h3>view post: <a href='../?post=" + postingAs + "/" + postpermLink + "'>" + postpermLink + "</a><br />" + result;
+          document.getElementById("displayUpdate").innerHTML = "<h3>Redirecting page in 8 seconds<h3>view post: <a href='/?post=" + postingAs + "/" + postpermLink + "'>" + postpermLink + "</a><br />" + result;
 
 
           setTimeout(() => {
-            let url = "../?post=" + postingAs + "/" + postpermLink;
+            let url = "/?post=" + postingAs + "/" + postpermLink;
             window.location.href = url;
           }, 8000);
         }
         // localStorage.setItem("hive", (document.getElementById('hiveuser').value));
-        // window.location.href = '../';
+        // window.location.href = '/';
       }
     ); // broadcast.comment
   };
@@ -714,7 +714,7 @@ function displayPost() {
     if (result.parent_author.length > 1) {
 
 
-      document.getElementById("display").innerHTML += "<div style='font-weight: strong; font-size: 200%; line-height: 100%; padding: .1em;'>replying to : <a href='../?post=" + result.parent_author + "/" + result.parent_permlink + "'>" + result.parent_author + "/" + result.parent_permlink + "</a></div>";
+      document.getElementById("display").innerHTML += "<div style='font-weight: strong; font-size: 200%; line-height: 100%; padding: .1em;'>replying to : <a href='/?post=" + result.parent_author + "/" + result.parent_permlink + "'>" + result.parent_author + "/" + result.parent_permlink + "</a></div>";
     } else {
       //  console.log("this is a top level comment");
 
@@ -729,7 +729,7 @@ function displayPost() {
     }
     document.title = result.title + " by " + result.author;
     document.getElementById("display").innerHTML += "<div style='font-weight: strong; font-size: 200%; line-height: 100%; padding: .1em;'>" + result.title + "</div>";
-    document.getElementById("display").innerHTML += "<br /><a href='../?hive=" + result.author + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + result.author + "/avatar'></button> <h4 style='display: inline;'>" + result.author + "</a></h3><br />" + whenagain;
+    document.getElementById("display").innerHTML += "<br /><a href='/?hive=" + result.author + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + result.author + "/avatar'></button> <h4 style='display: inline;'>" + result.author + "</a></h3><br />" + whenagain;
 
     document.getElementById("display").innerHTML += "<div style='float: right; text-align: right; justify-content: right; padding-top: 2em;'> Reading time: " + timeToRead.toFixed(0) + " min </div></div>";
 
@@ -737,8 +737,8 @@ function displayPost() {
     document.getElementById("display").innerHTML += "<hr style='clear:both' />";
     let sanipost = md.render(post1);
     sanipost = sanitize(sanipost);
-    sanipost = sanipost.replace(/@[A-Za-z0-9_.-]+[A-Za-z0-9_.]\s/gi, `<a href="../?hive=$&">$&</a>`);
-    // sanipost = sanipost.replace('<a href="../?hive= ', `<a href="../?hive=`);
+    sanipost = sanipost.replace(/@[A-Za-z0-9_.-]+[A-Za-z0-9_.]\s/gi, `<a href="/?hive=$&">$&</a>`);
+    // sanipost = sanipost.replace('<a href="/?hive= ', `<a href="/?hive=`);
 
 
 
@@ -778,11 +778,11 @@ function displayPost() {
           let thisPost = JSON.parse(JSON.stringify(result[i]));
 
           let sanicomm = md.render(md.render(result[i].body));
-          sanicomm = sanicomm.replace(/@[A-Za-z0-9_.]\w+[A-Za-z0-9_.]\b/gi, "<a href='../?hive=$&'>$&</a>");
+          sanicomm = sanicomm.replace(/@[A-Za-z0-9_.]\w+[A-Za-z0-9_.]\b/gi, "<a href='/?hive=$&'>$&</a>");
 
           // console.log(sanicomm);
           sanicomm = sanitize(sanicomm);
-          document.getElementById("comments").innerHTML += "<div id='comm' style='overflow-wrap: break-word;'>  <a class='mdl-chip mdl-color--blue-grey mdl-chip--contact mdl-chip--deletable' href='../?hive=" + thisPost.author + "'><img class='mdl-chip__contact mdl-color--light-blue' src='https://images.hive.blog/u/" + thisPost.author + "/avatar' alt='avatar'></img><span class='mdl-chip__text' style='font-weight: bold; color: white'>" + thisPost.author + " &nbsp;</span></a>  <div style='padding:2em'>" + sanicomm + "</div> <div style='text-align: right'><a href='?post=@" + thisPost.author + "/" + thisPost.permlink + "'>permlink & replies</a></div></div>";
+          document.getElementById("comments").innerHTML += "<div id='comm' style='overflow-wrap: break-word;'>  <a class='mdl-chip mdl-color--blue-grey mdl-chip--contact mdl-chip--deletable' href='/?hive=" + thisPost.author + "'><img class='mdl-chip__contact mdl-color--light-blue' src='https://images.hive.blog/u/" + thisPost.author + "/avatar' alt='avatar'></img><span class='mdl-chip__text' style='font-weight: bold; color: white'>" + thisPost.author + " &nbsp;</span></a>  <div style='padding:2em'>" + sanicomm + "</div> <div style='text-align: right'><a href='?post=@" + thisPost.author + "/" + thisPost.permlink + "'>permlink & replies</a></div></div>";
 
         }
 
@@ -918,14 +918,14 @@ function nonBlokzUser(hiveuser) {
 
 
 function splash() {
-  document.body.style.backgroundImage = "url('../images/background.webp')";
+  document.body.style.backgroundImage = "url('/images/background.webp')";
   // console.log("splash engaged");
-  var html = `<div id='splash'><h3 style="margin: 2px; padding: 2px;">personal.community</h3><img src="../images/logo192.png"><br />` +
-    `<h6 style="margin: 2px; padding: 2px;"><a class='mdl-button mdl-chip--contact mdl-chip--deletable' href='https://hive.io'><img class='mdl-chip__contact mdl-color--black' src='../images/hive.png' alt='hive.io'></img><span class='mdl-chip__text' style="font-weight: bold; color: #212529; font-family: 'Work Sans', sans-serif;">hive powered &nbsp;</span></a> </h6>` +
+  var html = `<div id='splash'><h3 style="margin: 2px; padding: 2px;">personal.community</h3><img src="/images/logo192.png"><br />` +
+    `<h6 style="margin: 2px; padding: 2px;"><a class='mdl-button mdl-chip--contact mdl-chip--deletable' href='https://hive.io'><img class='mdl-chip__contact mdl-color--black' src='/images/hive.png' alt='hive.io'></img><span class='mdl-chip__text' style="font-weight: bold; color: #212529; font-family: 'Work Sans', sans-serif;">hive powered &nbsp;</span></a> </h6>` +
     //`    </div>` + test
-    `<hr />To get started, hit the <img src="../images/favicon.png" style="height:16px" /> icon down below.` +
+    `<hr />To get started, hit the <img src="/images/favicon.png" style="height:16px" /> icon down below.` +
     `<br /> This is used to navigate personal.community past this page<br /> ` +
-    `<hr />Made with &#10084; by <br /><a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='../?hive=sn0n'><img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/sn0n/avatar'></img><span class='mdl-chip__text'>sn0n &nbsp;</span></a></div>`;
+    `<hr />Made with &#10084; by <br /><a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='/?hive=sn0n'><img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/sn0n/avatar'></img><span class='mdl-chip__text'>sn0n &nbsp;</span></a></div>`;
   var tempElement = document.createElement('splash');
   tempElement.innerHTML = html;
   document.getElementsByTagName('body')[0].appendChild(tempElement.firstChild);
@@ -1024,7 +1024,7 @@ function buildprofile(hiveuser) {
   hive.api.getDiscussionsByAuthorBeforeDate(hiveuser, null, now, 20, (err, result) => {
     // testing for loop for posts. 
     // data for each post in a loop
-    //document.getElementById("blog").innerHTML += "most recent posts of <h1><a href='../?hive=" + hiveuser + "'>" + hiveuser + "</a></h1>";
+    //document.getElementById("blog").innerHTML += "most recent posts of <h1><a href='/?hive=" + hiveuser + "'>" + hiveuser + "</a></h1>";
     for (var i = 0; i < result.length; i++) {
 
       // testing for replies 
@@ -1082,9 +1082,9 @@ function buildprofile(hiveuser) {
 
   // show link to peakd profile
   // TODO : remove link 
-  document.getElementById("hiveuser").innerHTML = "<br /><a href='http://peakd.com/@" + hiveuser + "' target='_peakd'><img src='../images/peakd.png'></a> &#8226; ";
-  document.getElementById("hiveuser").innerHTML += "<a href='http://hivestats.io/@" + hiveuser + "' target='_hivestats'><img src='../images/hivestats.ico'></a> &#8226; ";
-  document.getElementById("hiveuser").innerHTML += "<a href='https://hive-engine.com/?p=balances&a=" + hiveuser + "' target='_hiveengine'><img src='../images/hive_engine.png' height='32px' width='32px'></a> &#8226; ";
+  document.getElementById("hiveuser").innerHTML = "<br /><a href='http://peakd.com/@" + hiveuser + "' target='_peakd'><img src='/images/peakd.png'></a> &#8226; ";
+  document.getElementById("hiveuser").innerHTML += "<a href='http://hivestats.io/@" + hiveuser + "' target='_hivestats'><img src='/images/hivestats.ico'></a> &#8226; ";
+  document.getElementById("hiveuser").innerHTML += "<a href='https://hive-engine.com/?p=balances&a=" + hiveuser + "' target='_hiveengine'><img src='/images/hive_engine.png' height='32px' width='32px'></a> &#8226; ";
   document.getElementById("hiveuser").innerHTML += "<a href='https://hiveblocks.com/@" + hiveuser + "' target='_hiveblocks'>hiveblocks</a>  &#8226;  ";
   document.getElementById("hiveuser").innerHTML += "<a href='https://hivel.ink/@" + hiveuser + "' target='_hivelink'>hivel.ink</a>";
   // https://hivel.ink/@sn0n
@@ -1112,7 +1112,7 @@ function buildprofile(hiveuser) {
       // document.getElementById("favsite").innerHTML = "<a href='" + sanitize(blokzmeta.favsite) + "' target='_blank'>" + sanitize(blokzmeta.favsite) + "</a>";
       // interests
 
-      /* <a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='../?tag=hive-167922'>
+      /* <a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='/?tag=hive-167922'>
       <img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/hive-167922/avatar'></img>
       <span class='mdl-chip__text'>leofinance &nbsp;</span>
       </a>  */
@@ -1132,7 +1132,7 @@ function buildprofile(hiveuser) {
               let communityinfo = JSON.parse(xhr.responseText)
               // console.log("at bat " + communityinfo.result.title);
               let originalchips = document.getElementById("interests").innerHTML;
-              document.getElementById("interests").innerHTML = "<a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='../?tag=" + entry + "'><img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/" + entry + "/avatar'></img><span class='mdl-chip__text'>" + communityinfo.result.title + "&nbsp;</span></a>" + originalchips;
+              document.getElementById("interests").innerHTML = "<a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='/?tag=" + entry + "'><img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/" + entry + "/avatar'></img><span class='mdl-chip__text'>" + communityinfo.result.title + "&nbsp;</span></a>" + originalchips;
             }
           };
           var data = '{"jsonrpc":"2.0", "method":"bridge.get_community", "params":{"name":"' + entry + '","observer":"blokz"}, "id":1}';
@@ -1400,23 +1400,23 @@ window.onload = function loading() {
                 // all is well!
                 //   console.log("success;");
                 localStorage.setItem("hiveKeychainVerified", hiveuser);
-                window.location.href = "../"
+                window.location.href = "/"
               } else {
                 //   console.log('that username didnt work bruh');
                 localStorage.removeItem("hive");
-                window.location.href = "../?failedlogin"
+                window.location.href = "/?failedlogin"
               };
             });
         };
         keyChainPassing(hiveuser);
         // console.log(hiveuser + " connected");
       } else {
-        window.location.href = "../"
+        window.location.href = "/"
       }
 
     } else {
       //  console.log('keychain not installed');
-      window.location.href = "../"
+      window.location.href = "/"
     };
 
   };
@@ -1426,23 +1426,23 @@ window.onload = function loading() {
   if (localStorage.getItem("hive") !== null) {
     let loggedinas = localStorage.getItem("hive");
     if (localStorage.getItem("hiveKeychainVerified") !== null) {
-      document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='../?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a></div> ";
-      document.getElementById("loggedin").innerHTML += "<br /><a href='../?newpost=true'>Write Post</a>";
+      document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='/?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a></div> ";
+      document.getElementById("loggedin").innerHTML += "<br /><a href='/?newpost=true'>Write Post</a>";
       if (update !== true && localStorage.getItem("hive") !== null) {
-        document.getElementById('showUpdate').innerHTML = "<a href='../profile_update/'>Update Profile</a>";
+        document.getElementById('showUpdate').innerHTML = "<a href='/profile_update/'>Update Profile</a>";
       }
       //  console.log('keychain verified exists')
     } else if (localStorage.getItem("verified") == 'true') {
       // console.log('logged in true')
-      document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='../?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a><button class='mdl-button mdl-js-button' onclick='localStorage.removeItem(`verified`);location.reload()'><i class='material-icons'>verified_user</i><small style='color: green;'>verified</small></button></div> ";
-      document.getElementById("loggedin").innerHTML += "<br /><a href='../?newpost=true'>Write Post</a>";
+      document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='/?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a><button class='mdl-button mdl-js-button' onclick='localStorage.removeItem(`verified`);location.reload()'><i class='material-icons'>verified_user</i><small style='color: green;'>verified</small></button></div> ";
+      document.getElementById("loggedin").innerHTML += "<br /><a href='/?newpost=true'>Write Post</a>";
       if (update !== true && localStorage.getItem("hive") !== null) {
-        document.getElementById('showUpdate').innerHTML = "<a href='../profile_update/'>Update Profile</a>";
+        document.getElementById('showUpdate').innerHTML = "<a href='/profile_update/'>Update Profile</a>";
       }
     } else {
       //    console.log('login or something')
-      document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='../?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a><button class='mdl-button mdl-js-button' id='show-dialog' type='button' class='mdl-button'><i class='material-icons'>verified_user</i><small style='color: red;'>blokz lock</small></button></div> ";
-      // document.getElementById("loggedin").innerHTML += "<br /><a href='../?newpost=true'>Write Post</a>";
+      document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='/?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a><button class='mdl-button mdl-js-button' id='show-dialog' type='button' class='mdl-button'><i class='material-icons'>verified_user</i><small style='color: red;'>blokz lock</small></button></div> ";
+      // document.getElementById("loggedin").innerHTML += "<br /><a href='/?newpost=true'>Write Post</a>";
 
       var dialog = document.querySelector('dialog');
       var showDialogButton = document.querySelector('#show-dialog');
@@ -1478,7 +1478,7 @@ window.onload = function loading() {
     }
     loadTags();
   } else if (post === "true") {
-    // document.body.style.background = "#333 url(../images/back.png) no-repeat center center fixed";
+    // document.body.style.background = "#333 url(/images/back.png) no-repeat center center fixed";
     displayPost();
   } else if (hiveuser !== undefined && window.location.pathname != "/profile_update/") {
     // shouldnt trigger on profule_update 
