@@ -2,6 +2,7 @@ code, pre {
   width: 80%;
 color: #222;
 background-color: #fff;
+overflow: scroll;
 }
 
 pre {
