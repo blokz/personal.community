@@ -760,7 +760,7 @@ function displayPost() {
     let percentage = "13"
     document.getElementById("display").innerHTML += "<hr /><span style='font-size:1em'>Acknowledge </span> <span class='material-icons' style='font-size:1em' onClick='upvote(`" + permlink + "`,`" + author + "`,`" + percentage + "`,`thumbs`)' id='thumbs'>thumb_up</span> ";
     let findVoter = JSON.stringify(result.active_votes);
-    console.log(findVoter);
+    // console.log(findVoter);
     if (findVoter.search(localStorage.getItem("hive")) > 0) {
       console.log("user found, you have upvoted this");
       document.getElementById("thumbs").style.color = "red";
@@ -780,7 +780,7 @@ function displayPost() {
           let sanicomm = md.render(md.render(result[i].body));
           sanicomm = sanicomm.replace(/@[A-Za-z0-9_.]\w+[A-Za-z0-9_.]\b/gi, "<a href='../?hive=$&'>$&</a>");
 
-          console.log(sanicomm);
+          // console.log(sanicomm);
           sanicomm = sanitize(sanicomm);
           document.getElementById("comments").innerHTML += "<div id='comm' style='overflow-wrap: break-word;'>  <a class='mdl-chip mdl-color--blue-grey mdl-chip--contact mdl-chip--deletable' href='../?hive=" + thisPost.author + "'><img class='mdl-chip__contact mdl-color--light-blue' src='https://images.hive.blog/u/" + thisPost.author + "/avatar' alt='avatar'></img><span class='mdl-chip__text' style='font-weight: bold; color: white'>" + thisPost.author + " &nbsp;</span></a>  <div style='padding:2em'>" + sanicomm + "</div> <div style='text-align: right'><a href='?post=@" + thisPost.author + "/" + thisPost.permlink + "'>permlink & replies</a></div></div>";
 
@@ -1016,7 +1016,7 @@ function buildprofile(hiveuser) {
     for (var i = 0; i < result.length; i++) {
 
       // testing for replies 
-      console.log(" for loop data : " + JSON.stringify(result[i]));
+     // console.log(" for loop data : " + JSON.stringify(result[i]));
       // console.log("who dis " + hiveuser);
       // console.log("i is " + i);
       // http://127.0.0.1:3000/?post=yabapmatt/some-thoughts-on-the-future
@@ -1024,28 +1024,28 @@ function buildprofile(hiveuser) {
       // console.log('post created on : ' + result[i].created);
       let postedon = new Date(result[i].created.slice(0, 10)).toDateString();
       let descjson = JSON.parse(result[i].json_metadata);
-      console.log("working with json_metadata: " + JSON.stringify(descjson));
+      //console.log("working with json_metadata: " + JSON.stringify(descjson));
 
 
 
 
       if (descjson.description !== undefined) {
-        console.log("success on description : " + descjson.description);
+       // console.log("success on description : " + descjson.description);
         postdesc = descjson.description;
       } else {
-        console.log("no desc");
+       // console.log("no desc");
         postdesc = md.render(result[i].body);
         postdesc = strip(postdesc);
         postdesc = sanitize(postdesc);
         postdesc = truncate(postdesc, 20);
-        console.log("What post desc we working with here: " + postdesc);
+        // console.log("What post desc we working with here: " + postdesc);
         postdesc = postdesc + "...";
       }
       postedon = postedon.split('GMT');
 
       let id = i
 
-      console.log(result[i].author + "/" + result[i].permlink)
+     // console.log(result[i].author + "/" + result[i].permlink)
 
 
 
@@ -1057,12 +1057,12 @@ function buildprofile(hiveuser) {
         "<div style='margin-top: 1em; min-width: 50%; text-align: right; padding: .25em'><span style='font-size:1em'>Acknowledge </span> <span class='material-icons' style='font-size:1em; cursor: pointer;' onClick='upvote(`" + result[i].permlink + "`,`" + result[i].author + "`,`" + percentage + "`,`" + id + "`)' id='" + id + "'>thumb_up</span> " +
         "</div></div>";
       let findVoter = JSON.stringify(result[i].active_votes);
-      console.log(findVoter);
+      // console.log(findVoter);
       if (findVoter.search(localStorage.getItem("hive")) > 0) {
-        console.log("user found, you have upvoted this");
+      //  console.log("user found, you have upvoted this");
         document.getElementById(id).style.color = "red";
       } else {
-        console.log('you have yet to upvote this post')
+       // console.log('you have yet to upvote this post')
       }
     }
   });
@@ -1084,9 +1084,9 @@ function buildprofile(hiveuser) {
     // console.log(err, result)
     if (result.json_metadata !== undefined) {
 
-      console.log("meep :" + JSON.stringify(result));
+     // console.log("meep :" + JSON.stringify(result));
       var blokzmeta = JSON.parse(result.json_metadata);
-      console.log("test " + blokzmeta.article);
+     // console.log("test " + blokzmeta.article);
       // console.log("what is blokify " + blokify);
       var bitff = JSON.parse(JSON.stringify(blokzmeta));
       // console.log("blokzmeta: " + bitff.app);
@@ -1109,16 +1109,16 @@ function buildprofile(hiveuser) {
       let interestsLog = interests.split(',');
 
       interestsLog.forEach(function (entry) {
-        console.log(entry);
+       // console.log(entry);
         if (entry.substring(0, 5) == "hive-") {
-          console.log("community found in interests at " + entry);
+         // console.log("community found in interests at " + entry);
           var xhr = new XMLHttpRequest();
           xhr.open("POST", url);
           xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
           xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
               let communityinfo = JSON.parse(xhr.responseText)
-              console.log("at bat " + communityinfo.result.title);
+             // console.log("at bat " + communityinfo.result.title);
               let originalchips = document.getElementById("interests").innerHTML;
               document.getElementById("interests").innerHTML = "<a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='../?tag=" + entry + "'><img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/" + entry + "/avatar'></img><span class='mdl-chip__text'>" + communityinfo.result.title + "&nbsp;</span></a>" + originalchips;
             }
