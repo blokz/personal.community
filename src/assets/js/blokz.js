@@ -10,33 +10,33 @@
 
 if (window.location.hash.length > 1) {
   const path = window.location.hash.replace('#/', '')
-  console.log(path)
+  // console.log(path)
   let routes = ''
   const path2 = path.split("/")
   if (path2[0].charAt(0) == "@") {
-    console.log("@{USERNAME} Found");
+    //  console.log("@{USERNAME} Found");
     routes = path2[0];
-    console.log("checking for post");
+    //  console.log("checking for post");
     if (path2[1] !== undefined) {
-      console.log("i found a post here: " + path2[1]);
+      //    console.log("i found a post here: " + path2[1]);
       routes = routes + "/" + path2[1];
       history.pushState({ page: 1 }, "Some title", '?post=' + routes)
     } else {
-      console.log("no post found, redirecting to ?hive=")
+      //    console.log("no post found, redirecting to ?hive=")
       history.pushState({ page: 1 }, "Some title", '?hive=' + routes)
     }
   } else {
-    console.log("@ NOT Found ");
+    //  console.log("@ NOT Found ");
     if (path2[1].charAt(0) == "@") {
-      console.log("@{USERNAME} Found after a first tag");
+      //   console.log("@{USERNAME} Found after a first tag");
       routes = path2[1]
     }
     if (path2[2] !== undefined) {
-      console.log("but i found a post here: " + path2[2])
+      //   console.log("but i found a post here: " + path2[2])
       routes = routes + "/" + path2[2]
     }
     history.pushState({ page: 1 }, "Some title", '?post=' + routes)
-    console.log("this be thy path out: " + routes)
+    //  console.log("this be thy path out: " + routes)
   }
 
   location.reload();
@@ -132,8 +132,8 @@ let parentPermlink = '';
 function replyClick(author, commentpermlink) {
 
 
-  console.log("author :" + author);
-  console.log("commentpermlink :" + commentpermlink);
+  // console.log("author :" + author);
+  // console.log("commentpermlink :" + commentpermlink);
   /*  if (author !== undefined) {
       document.getElementById("replyingToContainer").style.display = "block";
       document.getElementById("replyingTo").value = commentpermlink;
@@ -193,7 +193,7 @@ function hidecomm() {
 }
 
 function updatePage() {
-  console.log("welcome to updating a profile");
+  // console.log("welcome to updating a profile");
   if (localStorage.getItem("hive") !== null) {
     hiveuser = localStorage.getItem("hive");
     // console.log(typeof hiveuser)
@@ -273,8 +273,8 @@ function hiveuserUp() {
   hive.api.getContent(hiveuser, 'blokzprofile', function (err, result) {
     // populate data
     if (result) {
-      console.log("results are in:");
-      console.log(result);
+      // console.log("results are in:");
+      // console.log(result);
       //       var blokzmeta = JSON.parse(result.json_metadata);
       // OLD let blokify = JSON.parse(JSON.stringify(result[0].body));
       // OLD let blokzmeta = JSON.parse((result[0].json_metadata));
@@ -282,7 +282,7 @@ function hiveuserUp() {
       // console.log("blokzmeta: " + blokzmeta);
       // console.log(blokzmeta.blokz);
       let bitff = JSON.parse(result.json_metadata);
-      console.log(bitff);
+      //  console.log(bitff);
       //document.getElementById("name").value = bitff.name;
       easyMDE.value(bitff.article);
       //document.getElementById("usertitle").value = bitff.usertitle;
@@ -313,7 +313,7 @@ function updateProfile() {
   let favorites = document.getElementById('favorite').value;
 
 
-  console.log("proof: " + article + interests + favorites);
+  // console.log("proof: " + article + interests + favorites);
 
   let upwho = document.getElementById('hiveuser').value;
 
@@ -342,9 +342,9 @@ function updateProfile() {
 
 
   if (window.hive_keychain) {
-    console.log('b');
-    console.log('keychain post or comment');
-    console.log("commenting to :" + parentPermlink);
+    //  console.log('b');
+    //  console.log('keychain post or comment');
+    //  console.log("commenting to :" + parentPermlink);
     let parentPermBC = 'blokzprofile';
     if (parentPermlink.length > 1) {
       parentPermBC = parentPermlink
@@ -378,10 +378,10 @@ function updateProfile() {
     ];
 
     hive_keychain.requestBroadcast(postAs, opsBroad, "Posting", function (response) {
-      console.log("main js response - post");
-      console.log(response);
+      //  console.log("main js response - post");
+      // console.log(response);
 
-      console.log('hold tight')
+      //  console.log('hold tight')
       setTimeout(() => {
         let url = "../?hive=" + postAs;
         window.location.href = url;
@@ -403,11 +403,11 @@ function updateProfile() {
 let reply
 
 function quickReply() {
-  console.log("begin creating post process");
-  console.log("replying to : " + localStorage.getItem('replyAuthor'));
-  console.log(localStorage.getItem('replyLink'));
+  // console.log("begin creating post process");
+  // console.log("replying to : " + localStorage.getItem('replyAuthor'));
+  // console.log(localStorage.getItem('replyLink'));
   let tag = document.getElementById('tag').value;
-  console.log("tags test: " + tag)
+  //  console.log("tags test: " + tag)
   let postTitle = document.getElementById('postTitle').value;
   let ran = AES256.encrypt(postTitle, postTitle);
   ran = ran.substring(12, 18);
@@ -416,13 +416,13 @@ function quickReply() {
   let postpermLink = ran.toLowerCase();
   // console.log("perm link " + postpermLink);
   let postData = easyMDE.value();
-  console.log(postData)
+  // console.log(postData)
   // console.log("document.getElementById('postingKey').value " + document.getElementById('postingKey').value);
   // console.log(hiveuser);
   let postingAs = localStorage.getItem("hive");
   // console.log("replying to : " + reply)
   // let setTags = "['testing', 'blokz', 'test']";
-  console.log('a');
+  // console.log('a');
   // todo: reply to comments and posts
   tag = replaceAll(tag, " ", "");
 
@@ -439,12 +439,12 @@ function quickReply() {
   }
 
   jsonmeta = JSON.stringify(jsonmeta)
-  console.log(jsonmeta)
+  // console.log(jsonmeta)
 
   if (window.hive_keychain) {
-    console.log('b');
-    console.log('keychain post or comment');
-    console.log("commenting to :" + parentPermlink);
+    //  console.log('b');
+    // console.log('keychain post or comment');
+    // console.log("commenting to :" + parentPermlink);
     let parentAuthor = localStorage.getItem('replyAuthor');
     let parentPermBC = localStorage.getItem('replyLink');
     // comment.get_parent_id() == parent_comment.get_id(): The parent of a comment cannot change.
@@ -489,10 +489,10 @@ function quickReply() {
     ];
 
     hive_keychain.requestBroadcast(postAs, opsBroad, "Posting", function (response) {
-      console.log("main js response - post");
-      console.log(response);
+    //  console.log("main js response - post");
+    //  console.log(response);
 
-      console.log('hold tight')
+    //  console.log('hold tight')
       setTimeout(() => {
         let url = "../?post=" + postAs + "/" + postpermLink.replace(/[^A-Za-z]+/g, '-').toLowerCase() + "pc";
         window.location.href = url;
@@ -509,10 +509,10 @@ function quickReply() {
 
 
 function createPost() {
-  console.log("begin creating post process");
+//  console.log("begin creating post process");
 
   let tag = document.getElementById('tag').value;
-  console.log("tags test: " + tag)
+ // console.log("tags test: " + tag)
   let postTitle = document.getElementById('postTitle').value;
   let ran = AES256.encrypt(postTitle, postTitle);
   ran = ran.substring(12, 18);
@@ -543,11 +543,11 @@ function createPost() {
   }
 
   jsonmeta = JSON.stringify(jsonmeta)
-  console.log(jsonmeta)
+ // console.log(jsonmeta)
   if (window.hive_keychain) {
-    console.log('b');
-    console.log('keychain post or comment');
-    console.log("commenting to :" + parentPermlink);
+  //  console.log('b');
+  //  console.log('keychain post or comment');
+   // console.log("commenting to :" + parentPermlink);
     let parentPermBC = '';
     if (parentPermlink.length > 1) {
       parentPermBC = parentPermlink
@@ -596,10 +596,10 @@ function createPost() {
     ];
 
     hive_keychain.requestBroadcast(postAs, opsBroad, "Posting", function (response) {
-      console.log("main js response - post");
-      console.log(response);
+     // console.log("main js response - post");
+     // console.log(response);
 
-      console.log('hold tight')
+    //  console.log('hold tight')
       setTimeout(() => {
         let url = "../?post=" + postAs + "/" + postpermLink.replace(/[^A-Za-z]+/g, '-').toLowerCase() + "pc";
         window.location.href = url;
@@ -613,7 +613,7 @@ function createPost() {
   } else {
     // TODO : blokzlock private key
     // broadcast a new post
-    console.log('c');
+   // console.log('c');
     hive.broadcast.comment(
       document.getElementById('postingKey').value,
       parentAuthor, //author
@@ -651,9 +651,9 @@ function upvote(permlink, author, percentage, id) {
       hiveuser = localStorage.getItem("hiveKeychainVerified");
       percentage = percentage * 0.01;
       let weight = 10000 * percentage;
-      console.log('we made it: ');
+     // console.log('we made it: ');
       hive_keychain.requestVote(hiveuser, permlink, author, weight, function (response) {
-        console.log(response);
+     //   console.log(response);
         // todo:  change reaction color
 
         document.getElementById(id).style.color = "red";
@@ -661,10 +661,10 @@ function upvote(permlink, author, percentage, id) {
 
       // console.log(hiveuser + " connected");
     } else {
-      console.log('keychain not setup, or something');
+   //   console.log('keychain not setup, or something');
     };
   } else {
-    console.log('keychain not installed');
+  //  console.log('keychain not installed');
   };
 };
 
@@ -689,7 +689,7 @@ function share() {
       title: document.title,
       url: window.location
     }).then(() => {
-      console.log('Thanks for sharing!');
+    //  console.log('Thanks for sharing!');
     })
       .catch(console.error);
   } else {
@@ -699,7 +699,7 @@ function share() {
 
 function displayPost() {
   document.getElementById("display").style = "margin: auto; margin-top: .25em; margin-bottom: .25em; max-width: 800px; justify-content: center; padding:2em; background-color: whitesmoke; border: 1px solid grey; box-shadow: 1px 1px;"
-  console.log('displaying post')
+  //  console.log('displaying post')
   var letting = getQueryVariable("post").split("/");
   let author = letting[0].replace("@", '');
   let permlink = letting[1];
@@ -708,7 +708,7 @@ function displayPost() {
   localStorage.setItem('replyLink', permlink);
   // console.log("this is a reply to " + result.parent_author)
   hive.api.getContent(author, permlink, function (err, result) {
-    console.log(result)
+    // console.log(result)
 
 
     if (result.parent_author.length > 1) {
@@ -716,7 +716,7 @@ function displayPost() {
 
       document.getElementById("display").innerHTML += "<div style='font-weight: strong; font-size: 200%; line-height: 100%; padding: .1em;'>replying to : <a href='../?post=" + result.parent_author + "/" + result.parent_permlink + "'>" + result.parent_author + "/" + result.parent_permlink + "</a></div>";
     } else {
-      console.log("this is a top level comment");
+      //  console.log("this is a top level comment");
 
     }
     let post1 = md.render(result.body).replace("\n", "");
@@ -749,7 +749,7 @@ function displayPost() {
     // console.log("SANITATION TEST post output" + sanipost);
     document.getElementById("display").innerHTML += "<div id='commentTags' style='border-top: 1px solid'>Topics:  </div>";
     let jsonTAGS = JSON.parse(result.json_metadata);
-    console.log("jsonTAGS" + JSON.stringify(jsonTAGS));
+    //console.log("jsonTAGS" + JSON.stringify(jsonTAGS));
     if (jsonTAGS.tags === undefined) {
       document.getElementById("commentTags").style.display = "none";
     } else {
@@ -762,10 +762,10 @@ function displayPost() {
     let findVoter = JSON.stringify(result.active_votes);
     // console.log(findVoter);
     if (findVoter.search(localStorage.getItem("hive")) > 0) {
-      console.log("user found, you have upvoted this");
+      // console.log("user found, you have upvoted this");
       document.getElementById("thumbs").style.color = "red";
     } else {
-      console.log('you have yet to upvote this post')
+      //  console.log('you have yet to upvote this post')
     }
 
     // todo : commentsz
@@ -807,11 +807,11 @@ function nonBlokzUser(hiveuser) {
 
   if (localStorage.getItem("hive") != undefined) {
     // to thy own self be true
-    
+
     let entryy = localStorage.getItem("hive");
     entryy = entryy.toLowerCase();
     // CURRENT TODO: FRIEND IMAGE
-    console.log("CAUGHT: " + entryy);
+  //  console.log("CAUGHT: " + entryy);
     var favfriend = document.createElement("div");
     favfriend.id = "whoamiaa";
     favfriend.setAttribute("onclick", "window.location.href='./?hive=" + entryy + "';");
@@ -842,21 +842,26 @@ function nonBlokzUser(hiveuser) {
   hive.api.call('database_api.find_accounts', { accounts: [hiveuser] }, (err, res) => {
     let createdAge = res.accounts[0].created.slice(0, 10);
     let datedd = createdAge.split("-");
-    console.log("Member since: " + datedd[0]);
+   // console.log("Member since: " + datedd[0]);
     function monthName(mon) {
       return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][mon - 1];
     }
     document.getElementById("age").innerHTML = monthName(datedd[1]) + " " + datedd[2] + ", " + datedd[0];
     if (res.accounts[0].posting_json_metadata.length > 1) {
       let posting_json = JSON.parse(JSON.stringify(res.accounts[0].posting_json_metadata));
-      console.log("posting_json: " + posting_json);
+      // console.log("posting_json: " + posting_json);
 
 
 
       document.getElementById("profimg").src = "https://images.hive.blog/u/" + hiveuser + "/avatar";
 
-      document.getElementById("coverimage").style.backgroundImage = "url('https://images.hive.blog/0x0/" + JSON.parse(posting_json).profile.cover_image + "')";
 
+
+      if (JSON.parse(posting_json).profile.cover_image !== undefined) {
+        if (JSON.parse(posting_json).profile.cover_image.length > 4) {
+          document.getElementById("coverimage").style.backgroundImage = "url('https://images.hive.blog/0x0/" + JSON.parse(posting_json).profile.cover_image + "')";
+        }
+      }
 
       if (JSON.parse(posting_json).profile.website !== undefined) {
         let saniweb = JSON.parse(posting_json).profile.website;
@@ -954,12 +959,12 @@ function buildprofile(hiveuser) {
   let profile = document.getElementById('TempProfile');
   let display = document.getElementById('profile');
   display.appendChild(profile.content.cloneNode(true));
-  console.log("fetching profile for : " + hiveuser)
+  //console.log("fetching profile for : " + hiveuser)
   // gets posting_json_metadata for generic profile data for user
   hive.api.call('database_api.find_accounts', { accounts: [hiveuser] }, (err, res) => {
     if (res.accounts[0].posting_json_metadata.length > 1) {
       let posting_json = JSON.parse(JSON.stringify(res.accounts[0].posting_json_metadata));
-      console.log("posting_json: " + posting_json);
+      // console.log("posting_json: " + posting_json);
       if (JSON.parse(posting_json).profile.about !== undefined) {
         let saniabo = JSON.parse(posting_json).profile.about;
         let saniabout = sanitize(saniabo);
@@ -984,7 +989,7 @@ function buildprofile(hiveuser) {
       if (JSON.parse(posting_json).profile.location !== undefined) {
         let saniloc = JSON.parse(posting_json).profile.location;
         let sanilocation = sanitize(saniloc);
-        console.log("loc " + sanilocation)
+        //  console.log("loc " + sanilocation)
         document.getElementById("location").innerHTML = sanilocation;
       } else {
         document.getElementById("strongLocation").style.display = "none";
@@ -992,7 +997,7 @@ function buildprofile(hiveuser) {
 
       let createdAge = res.accounts[0].created.slice(0, 10);
       let datedd = createdAge.split("-");
-      console.log("Member since: " + datedd[0]);
+      //console.log("Member since: " + datedd[0]);
       function monthName(mon) {
         return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][mon - 1];
       }
@@ -1004,7 +1009,14 @@ function buildprofile(hiveuser) {
       let useravatar = "https://images.hive.blog/u/" + hiveuser + "/avatar";
       document.getElementById("profimg").src = useravatar;
       // display cover image
-      document.getElementById("coverimage").style.backgroundImage = "url('https://images.hive.blog/0x0/" + JSON.parse(posting_json).profile.cover_image + "')";
+
+
+      if (JSON.parse(posting_json).profile.cover_image !== undefined) {
+        if (JSON.parse(posting_json).profile.cover_image.length > 4) {
+          document.getElementById("coverimage").style.backgroundImage = "url('https://images.hive.blog/0x0/" + JSON.parse(posting_json).profile.cover_image + "')";
+        }
+      }
+
     }
   });
 
@@ -1016,7 +1028,7 @@ function buildprofile(hiveuser) {
     for (var i = 0; i < result.length; i++) {
 
       // testing for replies 
-     // console.log(" for loop data : " + JSON.stringify(result[i]));
+      // console.log(" for loop data : " + JSON.stringify(result[i]));
       // console.log("who dis " + hiveuser);
       // console.log("i is " + i);
       // http://127.0.0.1:3000/?post=yabapmatt/some-thoughts-on-the-future
@@ -1030,10 +1042,10 @@ function buildprofile(hiveuser) {
 
 
       if (descjson.description !== undefined) {
-       // console.log("success on description : " + descjson.description);
+        // console.log("success on description : " + descjson.description);
         postdesc = descjson.description;
       } else {
-       // console.log("no desc");
+        // console.log("no desc");
         postdesc = md.render(result[i].body);
         postdesc = strip(postdesc);
         postdesc = sanitize(postdesc);
@@ -1045,7 +1057,7 @@ function buildprofile(hiveuser) {
 
       let id = i
 
-     // console.log(result[i].author + "/" + result[i].permlink)
+      // console.log(result[i].author + "/" + result[i].permlink)
 
 
 
@@ -1059,10 +1071,10 @@ function buildprofile(hiveuser) {
       let findVoter = JSON.stringify(result[i].active_votes);
       // console.log(findVoter);
       if (findVoter.search(localStorage.getItem("hive")) > 0) {
-      //  console.log("user found, you have upvoted this");
+        //  console.log("user found, you have upvoted this");
         document.getElementById(id).style.color = "red";
       } else {
-       // console.log('you have yet to upvote this post')
+        // console.log('you have yet to upvote this post')
       }
     }
   });
@@ -1080,13 +1092,13 @@ function buildprofile(hiveuser) {
   hive.api.getContent(hiveuser, 'blokzprofile', function (err, result) {
     // hive.api.getDiscussionsByAuthorBeforeDate(hiveuser, 'blokzprofile', now, 1, (err, result) => {
     // user has a blokz/profile
-    console.log("whats goin on here?")
+    // console.log("whats goin on here?")
     // console.log(err, result)
     if (result.json_metadata !== undefined) {
 
-     // console.log("meep :" + JSON.stringify(result));
+      // console.log("meep :" + JSON.stringify(result));
       var blokzmeta = JSON.parse(result.json_metadata);
-     // console.log("test " + blokzmeta.article);
+      // console.log("test " + blokzmeta.article);
       // console.log("what is blokify " + blokify);
       var bitff = JSON.parse(JSON.stringify(blokzmeta));
       // console.log("blokzmeta: " + bitff.app);
@@ -1109,16 +1121,16 @@ function buildprofile(hiveuser) {
       let interestsLog = interests.split(',');
 
       interestsLog.forEach(function (entry) {
-       // console.log(entry);
+        // console.log(entry);
         if (entry.substring(0, 5) == "hive-") {
-         // console.log("community found in interests at " + entry);
+          // console.log("community found in interests at " + entry);
           var xhr = new XMLHttpRequest();
           xhr.open("POST", url);
           xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
           xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
               let communityinfo = JSON.parse(xhr.responseText)
-             // console.log("at bat " + communityinfo.result.title);
+              // console.log("at bat " + communityinfo.result.title);
               let originalchips = document.getElementById("interests").innerHTML;
               document.getElementById("interests").innerHTML = "<a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='../?tag=" + entry + "'><img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/" + entry + "/avatar'></img><span class='mdl-chip__text'>" + communityinfo.result.title + "&nbsp;</span></a>" + originalchips;
             }
@@ -1159,11 +1171,11 @@ function buildprofile(hiveuser) {
 
       if (localStorage.getItem("hive")) {
         // to thy own self be true
-        console.log("ok wtf m8" + localStorage.getItem("hive"))
+        // console.log("ok wtf m8" + localStorage.getItem("hive"))
         let entryy = localStorage.getItem("hive");
         entryy = entryy.toLowerCase();
         // CURRENT TODO: FRIEND IMAGE
-        console.log("CAUGHT: " + entryy);
+        // console.log("CAUGHT: " + entryy);
         var favfriend = document.createElement("div");
         favfriend.id = "whoamiaa";
         favfriend.setAttribute("onclick", "window.location.href='./?hive=" + entryy + "';");
@@ -1239,7 +1251,7 @@ function buildprofile(hiveuser) {
 
   if (hiveuser == localStorage.getItem('hive')) {
     // begin operation: HUB
-    console.log('this is the start of the main hub for browse as');
+    //  console.log('this is the start of the main hub for browse as');
     let admin = document.getElementById('admin');
     let top8friends = document.getElementById('top8friends');
     document.getElementById('bio').style.display = "none";
@@ -1258,17 +1270,17 @@ function showtag(tag) {
   hive.api.getDiscussionsByCreated({ "tag": tag, "limit": 20 }, function (err, result) {
     if (err === null) {
       var i, len = result.length;
-      console.log("what is a " + tag);
+      // console.log("what is a " + tag);
 
       if (tag.substring(0, 5) == "hive-") {
-        console.log("community found in interests at " + tag);
+        //  console.log("community found in interests at " + tag);
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
             let communityinfo = JSON.parse(xhr.responseText)
-            console.log("at bat " + communityinfo.result.title);
+            // console.log("at bat " + communityinfo.result.title);
             let contentofTag = document.getElementById("display").innerHTML;
             document.getElementById("display").innerHTML = "<small>most recent</small><div style='font-size: 2em; padding: .1em; margin: .2em'>" + communityinfo.result.title + " community posts</div><br />" + contentofTag;
           }
@@ -1290,18 +1302,18 @@ function showtag(tag) {
         //let reactioncount = result[i].active_votes.length;
 
         let descjson = JSON.parse(result[i].json_metadata);
-        console.log("working with json_metadata: " + descjson.description);
+        //console.log("working with json_metadata: " + descjson.description);
 
         if (descjson.description !== undefined) {
-          console.log("success on description : " + descjson.description);
+          //  console.log("success on description : " + descjson.description);
           postdesc = descjson.description;
         } else {
-          console.log("no desc");
+          // console.log("no desc");
           postdesc = md.render(result[i].body);
           postdesc = strip(postdesc);
           postdesc = sanitize(postdesc);
           postdesc = truncate(postdesc, 40);
-          console.log("What post desc we working with here: " + postdesc);
+          // console.log("What post desc we working with here: " + postdesc);
           postdesc = postdesc + "...";
         }
         let percentage = "13";
@@ -1325,7 +1337,7 @@ function showtag(tag) {
         document.getElementById("comments").style.display = "none";
       }
     } else {
-      console.log(err);
+      // console.log(err);
     }
   });
 }
@@ -1334,13 +1346,13 @@ function showtag(tag) {
 function blokzlock() {
   // close menu
   // blokzmenu();
-  console.log('nope');
+  // console.log('nope');
   // create modal
   // stor localstorage key 
   // use aes
 
   var encrypted = AES256.encrypt('TEXT', 'PASSWORD');
-  console.log(encrypted);
+  // console.log(encrypted);
 
   // close dialog
   // document.querySelector('dialog').close();
@@ -1379,18 +1391,18 @@ window.onload = function loading() {
       if (confirmAction) {
         function keyChainPassing(keychainpass) {
           hive_keychain.requestHandshake(function () {
-            console.log("Handshake received!");
+            //  console.log("Handshake received!");
           })
           hive_keychain.requestSignBuffer(keychainpass, 'Login', 'Posting',
             (response) => {
-              console.log(response)
+              // console.log(response)
               if (response.success) {
                 // all is well!
-                console.log("success;");
+                //   console.log("success;");
                 localStorage.setItem("hiveKeychainVerified", hiveuser);
                 window.location.href = "../"
               } else {
-                console.log('that username didnt work bruh');
+                //   console.log('that username didnt work bruh');
                 localStorage.removeItem("hive");
                 window.location.href = "../?failedlogin"
               };
@@ -1403,7 +1415,7 @@ window.onload = function loading() {
       }
 
     } else {
-      console.log('keychain not installed');
+      //  console.log('keychain not installed');
       window.location.href = "../"
     };
 
@@ -1419,16 +1431,16 @@ window.onload = function loading() {
       if (update !== true && localStorage.getItem("hive") !== null) {
         document.getElementById('showUpdate').innerHTML = "<a href='../profile_update/'>Update Profile</a>";
       }
-      console.log('keychain verified exists')
+      //  console.log('keychain verified exists')
     } else if (localStorage.getItem("verified") == 'true') {
-      console.log('logged in true')
+      // console.log('logged in true')
       document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='../?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a><button class='mdl-button mdl-js-button' onclick='localStorage.removeItem(`verified`);location.reload()'><i class='material-icons'>verified_user</i><small style='color: green;'>verified</small></button></div> ";
       document.getElementById("loggedin").innerHTML += "<br /><a href='../?newpost=true'>Write Post</a>";
       if (update !== true && localStorage.getItem("hive") !== null) {
         document.getElementById('showUpdate').innerHTML = "<a href='../profile_update/'>Update Profile</a>";
       }
     } else {
-      console.log('login or something')
+      //    console.log('login or something')
       document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='../?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a><button class='mdl-button mdl-js-button' id='show-dialog' type='button' class='mdl-button'><i class='material-icons'>verified_user</i><small style='color: red;'>blokz lock</small></button></div> ";
       // document.getElementById("loggedin").innerHTML += "<br /><a href='../?newpost=true'>Write Post</a>";
 
@@ -1451,7 +1463,7 @@ window.onload = function loading() {
   if (tag !== "null") {
     showtag(tag);
   } else if (getQueryVariable("newpost") !== false) {
-    console.log("NEW POST");
+    // console.log("NEW POST");
     document.getElementById("newPostDiv").style.display = "block";
     document.getElementById("display").style.display = "none";
     document.getElementById("comments").style.display = "none";
