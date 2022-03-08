@@ -954,7 +954,7 @@ if (getQueryVariable("post") !== false) {
 function buildprofile(hiveuser) {
 
 
-
+if (window.location.pathname != "/profile_update/") {
 
   let profile = document.getElementById('TempProfile');
   let display = document.getElementById('profile');
@@ -1261,7 +1261,7 @@ function buildprofile(hiveuser) {
     document.getElementById('admin').style = "padding-left: 2em; padding-right: 2em;"
     document.getElementById('top8friends').style = "width: 100%"
   }
-
+}
 }
 
 
