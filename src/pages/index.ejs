@@ -8,6 +8,57 @@
   </a>
 </template>
 
+<link rel="stylesheet" href="/css/mdl-chips-input.css">
+<script src="/js/mdl-chips-input.js" type="application/javascript"></script>
+<div id="admin"></div>
+
+<!-- UPDATE PROFILE  -->
+<div id="updateprofiledisplay" style="display:none">
+  <div
+    style="padding: 1em; margin: 1em auto; justify-content: center; max-width: 800px; text-align: left; border: 1px solid black; background-color: whitesmoke;"
+    id="upprofile">
+    <h3>personal.community profile editor</h3>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" id="hiveuser" type="hidden" onchange="hiveuserUp()">
+      <label class="mdl-textfield__label" for="username"></label>
+      <details>
+        <summary><strong>read me:</strong></summary>
+        Welcome, please know that creating a profile will create a top level post on your hive account,
+        this will be visible on hive frontends.<br />example:
+        <a href="https://personal.community/@eddiespino/blokzprofile"
+          target="_blank">https://personal.community/@eddiespino/blokzprofile</a><br />
+        Personal.community currently does not update your accounts "Posting json metadata" information such as name,
+        location, website, bio/tagline in addition to avatar & cover images, for that please use <a
+          href="https://peakd.com">peakd.com</a> or <a href="https://hive.blog">hive.blog</a>. Editing account
+        json_metadata will be included in a future update.
+      </details>
+    </div><br />
+    <small>Interests</small><br />
+    <div class="mdl-textfield mdl-js-textfield mdl-chipfield" id="interestsUpdate">
+      <input type="hidden" class="mdl-chipfield__input" name="interestsUpdate" id="interestUpdate" value="">
+      <input class="mdl-textfield__input" type="text" id="my-input-0">
+      <label class="mdl-textfield__label" for="my-input-0"></label>
+    </div><br />
+    <small>Favorite Users</small><br />
+    <div class="mdl-textfield mdl-js-textfield mdl-chipfield" id="favoritesUpdate">
+      <input type="hidden" class="mdl-chipfield__input" name="favoritesUpdate" id="favoriteUpdate" value="">
+      <input class="mdl-textfield__input" type="text" id="my-input-1">
+      <label class="mdl-textfield__label" for="my-input-0"></label>
+    </div><br />
+    <div class="mdl-textfield mdl-js-textfield">
+      <small>Bio/About</small><textarea id="articleUpdate"></textarea>
+      <label class="mdl-textfield__label" for="article" id="articleLabel"></label>
+    </div>
+    <div>
+      <div>
+        <button type="button" id="nextBtn" onclick="updateProfile()"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+          data-upgraded=",MaterialButton,MaterialRipple"> Update Profile</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END UPDATE PROFILE  -->
 <!-- 
                 <a class='mdl-chip mdl-chip--contact mdl-chip--deletable' href='/?tag=hive-195370'>
                 <img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/hive-195370/avatar'></img>
@@ -16,12 +67,11 @@
             -->
 
 
-<link rel="stylesheet" href="/css/mdl-chips-input.css">
-<script src="/js/mdl-chips-input.js" type="application/javascript"></script>
 
 
-<div style="position: fixed; right: 20px; top: 20px" id="share"><small><i class='material-icons' onclick='share()' style='cursor: pointer;'>share</i></small></div>
-        
+<div style="position: fixed; right: 20px; top: 20px" id="share"><small><i class='material-icons' onclick='share()'
+      style='cursor: pointer;'>share</i></small></div>
+
 
 <div id="profile"></div>
 
@@ -38,8 +88,8 @@
     <div style="margin-top: 72px;">
       <div class="bio" id="bio">
         <div id="cms">
-          <div id="name" class="name"></div> 
-           <div id="usertitle"></div>
+          <div id="name" class="name"></div>
+          <div id="usertitle"></div>
         </div>
         <!--<div id="userpic"><img id="default_pic" class="profile_pic"></div>-->
 
@@ -49,48 +99,48 @@
 
 
 
-
-<details style="margin-top: 1em"><summary style="color: red; ">more details</summary>
-        <div style='float: right;   width:100%; padding-left: 1em' id="fltrt"><strong id="strongInterests">Topics of
-            Interest</strong><br />
-
-
-          <span id="interests" class="interests" style="padding-left: 1em;"></span>
-        </div>
-
-        <div style='float: right; clear: both;  width:48%;' id="top8friends">
-          <strong>Friends</strong><br />
-          <div class="mdl-tabs__panel" id="top8" style="padding: 1em; text-align: center;margin: auto;">
-            <!-- sn0n is tom -->
-            <div id="tom" onclick="window.location.href='/?hive=sn0n';"
-              style="display: inline-block; padding: 5px; margin: 10px auto; width: 100px; text-align: center;">
-              <div id="sn0n_tom"><img class="avatar" src="https://images.hive.blog/u/sn0n/avatar"></div>
-              <div id="sn0n_tom_ffsName"><small id="sn0n_NEW_tom">sn0n</small></div>
-            </div>
-            <span id="favorites"></span>
+<div style="margin: auto; text-align: center;">
+        <details style="margin-top: 1em;">
+          <summary style="padding: 4px; color: red; max-width: 420px; border: 1px solid #a9a9a9; border-radius: 2px; margin: auto; text-align: left;">more details
+            <span class="material-icons" style="float:right">
+              expand_more
+            </span>
+          </summary><div style="border: 1px solid #a9a9a9;">
+          <div style='float: right;   width:100%; padding-left: 1em' id="fltrt"><strong id="strongInterests">Topics of
+              Interest</strong><br />
+            <span id="interests" class="interests" style="padding-left: 1em;"></span>
           </div>
-        </div>
+          <div style='float: right; clear: both;  width:48%;' id="top8friends">
+            <strong>Friends</strong><br />
+            <div class="mdl-tabs__panel" id="top8" style="padding: 1em; text-align: center;margin: auto;">
+              <!-- sn0n is tom -->
+              <div id="tom" onclick="window.location.href='/?hive=sn0n';"
+                style="display: inline-block; padding: 5px; margin: 10px auto; width: 100px; text-align: center;">
+                <div id="sn0n_tom"><img class="avatar" src="https://images.hive.blog/u/sn0n/avatar"></div>
+                <div id="sn0n_tom_ffsName"><small id="sn0n_NEW_tom">sn0n</small></div>
+              </div>
+              <span id="favorites"></span>
+            </div>
+          </div>
+          <strong id="strongAge">Member Since</strong>
+          <div style="padding-left: 1em;" id="age"></div>
+          <strong id="strongLocation">Location</strong>
+          <div style="padding-left: 1em;" id="location"></div>
+          <strong id="strongWebsite">Website:</strong><br />
+          <div id="favsite" class="favsite" style="padding-left: 1em;"></div><br />
+
+           <div><strong id="strongAbout">About Me</strong></div>
+        <div id="article" class="biofull" style="max-width: 50%;"></div>
+
+        </div></details>
 
 
-        <strong id="strongAge">Member Since</strong>
-        <div style="padding-left: 1em;" id="age"></div>
-
-        <strong id="strongLocation">Location</strong>
-        <div style="padding-left: 1em;" id="location"></div>
-
-        <strong id="strongWebsite">Website:</strong><br />
-        <div id="favsite" class="favsite" style="padding-left: 1em;"></div><br />
-
-      
-        <div><strong id="strongAbout">About Me</strong></div>
-        <div id="article" class="biofull" style="max-width: 50%;"></div><br />
-     
-      </details>
-
-
+       
 
         <div style="clear: both;">
-          <h3 style="text-align: left; border-bottom: .01em solid black; margin-bottom: 0px; margin-right: 20%; margin-left: 20%">Post History</h3>
+          <h3
+            style="text-align: left; border-bottom: .01em solid black; margin-bottom: 0px; margin-right: 20%; margin-left: 20%">
+            Post History</h3>
           <div id="blog" style="padding: 1em; clear: both; max-width: 600px; margin: auto;">
           </div>
         </div>
@@ -99,7 +149,8 @@
         <span id="hiveuser">&nbsp;</span><br />
 
 
-      </div><div id="admin"></div>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -117,34 +168,35 @@
 <!-- Quick Reply -->
 <div id="somecontext"
   style="display: none; padding: 1em; margin: auto; margin-top: .25em; margin-bottom: 0px; max-width: 800px; justify-content: center; background-color: whitesmoke; border: 1px solid grey; box-shadow: 1px 1px;">
-<h4>Quick Reply: </h4>  <textarea id="replyBody"></textarea> <br /><button type="button" id="nextBtn" onclick="quickReply()"
-class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-data-upgraded=",MaterialButton,MaterialRipple">Submit</button></div>
+  <h4>Quick Reply: </h4> <textarea id="replyBody"></textarea> <br /><button type="button" id="nextBtn"
+    onclick="quickReply()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+    data-upgraded=",MaterialButton,MaterialRipple">Submit</button>
+</div>
 
 
 
 <div id="comments"
   style="padding: 1em; margin: auto; margin-top: .25em; margin-bottom: 100px; max-width: 800px; justify-content: center; background-color: whitesmoke; border: 1px solid grey; box-shadow: 1px 1px;">
- </div>
+</div>
 
 <div id="newPostDiv" style="background-color: white; display:none; padding: 1em;  margin: 0px ">
   <small id="postorcomment"></small>
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="posttitleid" style='width: 100%'>
     <label class="mdl-textfield__label" for="postTitle" id="postTitleLabel">Post Title</label>
-     <input class="mdl-textfield__input" type="text" id="postTitle">
+    <input class="mdl-textfield__input" type="text" id="postTitle">
   </div>
 
   <div class="mdl-textfield mdl-js-textfield" style='width: 100%; margin-top: 0px; padding: 5px'>
     <textarea id="postBody" style="box-sizing: border-box; height: 100%;"></textarea>
     <label class="mdl-textfield__label" for="postBody" id="postBodyLabel"></label>
   </div>
-  
+
   tags:
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-chipfield" id="tags" style='width: 100%'>
 
     <input type="hidden" class="mdl-chipfield__input" name="tags" id="tag" value="">
     <input class="mdl-textfield__input" type="text" id="my-input-0">
-    
+
   </div><br />
 
   <div style="margin-bottom: 200px;">
@@ -155,13 +207,3 @@ data-upgraded=",MaterialButton,MaterialRipple">Submit</button></div>
 
 
 </div>
-
-
-
-
-
-
-
-
-  
-

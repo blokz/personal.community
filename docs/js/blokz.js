@@ -200,6 +200,7 @@ function updatePage() {
     // console.log(hiveuser);
 
     document.getElementById("hiveuser").value = hiveuser;
+    document.getElementById("display").style.display = "block";
     hiveuserUp()
   } else {
     // console.log("user does not exist! or something went wrong");
@@ -241,6 +242,20 @@ function loadChips() {
   });
 }
 
+function loadUpdateChips() {
+  function dispchip(fn) {
+    if (document.readyState != 'loading') {
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
+  }
+  dispchip(function () {
+    new window['MaterialChipInput'](document.getElementById('interestsUpdate'));
+    new window['MaterialChipInput'](document.getElementById('favoritesUpdate'));
+  });
+}
+
 function loadTags() {
   function ready(fn) {
     if (document.readyState != 'loading') {
@@ -267,8 +282,15 @@ function genChips(item, index) {
 
 
 function hiveuserUp() {
-  // console.log("TRIGGERED!!!");
+  console.log("TRIGGERED!!!");
+  document.getElementById("share").style.display = "none";
   let hiveuserUP = document.getElementById("hiveuser").value;
+  let profile = document.getElementById('updateprofiledisplay');
+  let display = document.getElementById('profile');
+  display.appendChild(profile);
+  document.getElementById("updateprofiledisplay").style.display = "block";
+
+  easyMDE = new EasyMDE({ element: document.getElementById('articleUpdate') });
   // console.log(hiveuserUP);
   hive.api.getContent(hiveuser, 'blokzprofile', function (err, result) {
     // populate data
@@ -281,18 +303,20 @@ function hiveuserUp() {
       // console.log(blokify);
       // console.log("blokzmeta: " + blokzmeta);
       // console.log(blokzmeta.blokz);
+   
       let bitff = JSON.parse(result.json_metadata);
-      //  console.log(bitff);
+        console.log(bitff);
       //document.getElementById("name").value = bitff.name;
       easyMDE.value(bitff.article);
       //document.getElementById("usertitle").value = bitff.usertitle;
       //document.getElementById("birthyear").value = bitff.birthyear;
       //document.getElementById("location").value = bitff.location;
       //document.getElementById("gender").value = bitff.gender;
-      document.getElementById("interest").value = bitff.interests;
-      document.getElementById("favorite").value = bitff.favorites;
+      console.log(bitff.interests)
+      document.getElementById("interestUpdate").value = bitff.interests;
+      document.getElementById("favoriteUpdate").value = bitff.favorites;
       //document.getElementById("favsite").value = bitff.favsite;
-      loadChips();
+      loadUpdateChips()
     } else {
       reject(err);
     }
@@ -308,12 +332,13 @@ function updateProfile() {
   //let birthyear = document.getElementById('birthyear').value;
   //var sign = document.getElementById('sign').value;
   // let gender = document.getElementById('gender').value;
+  
   // let location = document.getElementById('location').value;
-  let interests = document.getElementById('interest').value;
-  let favorites = document.getElementById('favorite').value;
+  let interests = document.getElementById('interestUpdate').value;
+  let favorites = document.getElementById('favoriteUpdate').value;
 
 
-  // console.log("proof: " + article + interests + favorites);
+   console.log("proof: " + article + interests + favorites);
 
   let upwho = document.getElementById('hiveuser').value;
 
@@ -1251,18 +1276,31 @@ if (window.location.pathname != "/profile_update/") {
 
   if (hiveuser == localStorage.getItem('hive')) {
     // begin operation: HUB
-    //  console.log('this is the start of the main hub for browse as');
+      console.log('this is the start of the main hub for browse as');
     let admin = document.getElementById('admin');
     let top8friends = document.getElementById('top8friends');
     document.getElementById('bio').style.display = "none";
+    document.getElementById('profile').style.display = "none";
     document.getElementById('admin').innerHTML = "<h1 style='border-bottom: 1px solid black'>The Hub</h1>";
     admin.appendChild(fltrt);
     admin.appendChild(top8friends);
+
+    document.getElementById('admin').innerHTML += "<strong>About Me </strong>";
+ 
+    let article = document.getElementById('article');
+    admin.appendChild(article);
     document.getElementById('admin').style = "padding-left: 2em; padding-right: 2em;"
     document.getElementById('top8friends').style = "width: 100%"
   }
 }
 }
+
+const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+if (isMobile == false) {
+  document.getElementById('share').style.display = "none";
+}
+
+
 
 
 // ?tag=(tag)
@@ -1429,7 +1467,7 @@ window.onload = function loading() {
       document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='/?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a></div> ";
       document.getElementById("loggedin").innerHTML += "<br /><a href='/?newpost=true'>Write Post</a>";
       if (update !== true && localStorage.getItem("hive") !== null) {
-        document.getElementById('showUpdate').innerHTML = "<a href='/profile_update/'>Update Profile</a>";
+        document.getElementById('showUpdate').innerHTML = "<a href='/?update=true'>Update Profile</a>";
       }
       //  console.log('keychain verified exists')
     } else if (localStorage.getItem("verified") == 'true') {
@@ -1437,7 +1475,7 @@ window.onload = function loading() {
       document.getElementById("loggedin").innerHTML = "<div style='float: right'><button class='mdl-button mdl-js-button' onclick='logout()'><i class='material-icons'>exit_to_app</i><small>Logout</small></button></div> <div style='padding-top: 3px;'><a href='/?hive=" + loggedinas + "' style='text-decoration: none'><button class='mdl-button mdl-js-button mdl-button--fab'><img src='https://images.hive.blog/u/" + loggedinas + "/avatar'></button> " + loggedinas + "</a><button class='mdl-button mdl-js-button' onclick='localStorage.removeItem(`verified`);location.reload()'><i class='material-icons'>verified_user</i><small style='color: green;'>verified</small></button></div> ";
       document.getElementById("loggedin").innerHTML += "<br /><a href='/?newpost=true'>Write Post</a>";
       if (update !== true && localStorage.getItem("hive") !== null) {
-        document.getElementById('showUpdate').innerHTML = "<a href='/profile_update/'>Update Profile</a>";
+        document.getElementById('showUpdate').innerHTML = "<a href='/?update=true'>Update Profile</a>";
       }
     } else {
       //    console.log('login or something')
@@ -1483,7 +1521,7 @@ window.onload = function loading() {
   } else if (hiveuser !== undefined && window.location.pathname != "/profile_update/") {
     // shouldnt trigger on profule_update 
     buildprofile(hiveuser)
-  } else if (update === true) {
+  } else if (getQueryVariable("update") == "true") {
     updatePage();
   } else if (localStorage.getItem("hive") !== null) {
     buildprofile(localStorage.getItem("hive"));

@@ -81,8 +81,13 @@ h6 {
 }
 
 .mdl-textfield {
-  width: 80%;
+  width: 100%;
 }
+
+details > summary:first-of-type {
+  list-style-type: none;
+}
+
 
 
 .name {
