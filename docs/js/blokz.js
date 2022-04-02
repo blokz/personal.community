@@ -1332,6 +1332,7 @@ function showtag(tag) {
             let contentofTag = document.getElementById("display").innerHTML;
             let commdesc = md.render(communityinfo.result.description);
             commdesc = sanitize(commdesc);
+            // TODO : break out if comdesc = 0 or some
             document.getElementById("display").innerHTML = "<small>most recent</small><div style='font-size: 2em; padding: .1em; margin: .2em'><img class='mdl-chip__contact mdl-color--pink' src='https://images.hive.blog/u/" + tag + "/avatar'></img>" + communityinfo.result.title + " community posts</div>" +
               "<details><summary>" + communityinfo.result.about + "<br /><span style='color: red;'>click for description <small class=\"material-icons\">expand_more</small></span></summary>" + commdesc + "</details><br />" + contentofTag;
 
