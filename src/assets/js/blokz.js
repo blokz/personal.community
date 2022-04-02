@@ -103,6 +103,18 @@ md.set({
 
 window.onscroll = function () { scrollFunction() };
 
+function altfrontend(hiveuser) {
+
+  console.log("hive user: " + hiveuser)
+  document.getElementById("frontends").innerHTML = "<a href='http://peakd.com/@" + hiveuser + "' target='_peakd'><img src='/images/peakd.png'></a> &#8226; ";
+  document.getElementById("frontends").innerHTML += "<a href='http://hivestats.io/@" + hiveuser + "' target='_hivestats'><img src='/images/hivestats.ico'></a> &#8226; ";
+  document.getElementById("frontends").innerHTML += "<a href='https://hive-engine.com/?p=balances&a=" + hiveuser + "' target='_hiveengine'><img src='/images/hive_engine.png' height='32px' width='32px'></a> &#8226; ";
+  document.getElementById("frontends").innerHTML += "<a href='https://hiveblocks.com/@" + hiveuser + "' target='_hiveblocks'>hiveblocks</a>  &#8226;  ";
+  document.getElementById("frontends").innerHTML += "<a href='https://hivel.ink/@" + hiveuser + "' target='_hivelink'>hivel.ink</a>";
+  // https://hivel.ink/@sn0n
+
+}
+
 function strip(html) {
   let doc = new DOMParser().parseFromString(html, 'text/html');
   return doc.body.textContent || "";
@@ -1107,13 +1119,7 @@ function buildprofile(hiveuser) {
 
     // show link to peakd profile
     // TODO : remove link 
-    console.log("hive user: " + hiveuser)
-    document.getElementById("frontends").innerHTML = "<br /><a href='http://peakd.com/@" + hiveuser + "' target='_peakd'><img src='/images/peakd.png'></a> &#8226; ";
-    document.getElementById("frontends").innerHTML += "<a href='http://hivestats.io/@" + hiveuser + "' target='_hivestats'><img src='/images/hivestats.ico'></a> &#8226; ";
-    document.getElementById("frontends").innerHTML += "<a href='https://hive-engine.com/?p=balances&a=" + hiveuser + "' target='_hiveengine'><img src='/images/hive_engine.png' height='32px' width='32px'></a> &#8226; ";
-    document.getElementById("frontends").innerHTML += "<a href='https://hiveblocks.com/@" + hiveuser + "' target='_hiveblocks'>hiveblocks</a>  &#8226;  ";
-    document.getElementById("frontends").innerHTML += "<a href='https://hivel.ink/@" + hiveuser + "' target='_hivelink'>hivel.ink</a>";
-    // https://hivel.ink/@sn0n
+    altfrontend(hiveuser); 
     // fetch blokzprofile post from hive
     hive.api.getContent(hiveuser, 'blokzprofile', function (err, result) {
       // hive.api.getDiscussionsByAuthorBeforeDate(hiveuser, 'blokzprofile', now, 1, (err, result) => {
@@ -1277,6 +1283,7 @@ function buildprofile(hiveuser) {
 
     if (hiveuser == localStorage.getItem('hive')) {
       // begin operation: HUB
+      altfrontend(hiveuser); 
       console.log('this is the start of the main hub for browse as');
       let admin = document.getElementById('admin');
       let top8friends = document.getElementById('top8friends');
