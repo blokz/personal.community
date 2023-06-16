@@ -560,63 +560,63 @@ function friendfeed(favs) {
       // testing for loop for posts. 
       // data for each post in a loop
       //document.getElementById("blog").innerHTML += "most recent posts of <h1><a href='/?hive=" + hiveuser + "'>" + hiveuser + "</a></h1>";
-        for (var i = 0; i < result.length; i++) {
-          if (result[i].author != undefined) {
-        // testing for replies 
-        // console.log(" for loop data : " + JSON.stringify(result[i]));
-        // console.log("who dis " + hiveuser);
-        // console.log("i is " + i);
-        // http://127.0.0.1:3000/?post=yabapmatt/some-thoughts-on-the-future
-       // reactionCount = result[i].active_votes.length;
-        // console.log('post created on : ' + result[i].created);
-        let postedon = new Date(result[i].created.slice(0, 10)).toDateString();
-        let descjson = JSON.parse(result[i].json_metadata);
-        //console.log("working with json_metadata: " + JSON.stringify(descjson));
-        if (descjson.description !== undefined) {
-          // console.log("success on description : " + descjson.description);
-          postdesc = descjson.description;
-        } else {
-          // console.log("no desc");
-          postdesc = md.render(result[i].body);
-          postdesc = strip(postdesc);
-          postdesc = sanitize(postdesc);
-          postdesc = truncate(postdesc, 20);
-          // console.log("What post desc we working with here: " + postdesc);
-          postdesc = postdesc + "...";
-        }
-        postedon = postedon.split('GMT');
-        let id = i
-        // console.log(result[i].author + "/" + result[i].permlink)
-        // TODO : color reaction 
-        document.getElementById("friendfeed").innerHTML += "<div style='margin: 1em; padding-left: 1em; text-align: left'><div><a href='?post=" + result[i].author + "/" + result[i].permlink + "'>" + result[i].title + "</a></div>" +
-        "" + result[i].author+ "<br />" + postedon + "<div style='overflow: hidden;'>" + postdesc + "</div>" +
-          "</div>"; 
-        
-        // INDEXEDDB (hub)
-        // localStorage.getItem('hive')
-        console.log("adding to localbase")
-        db.collection('hivecomment').doc(result[i].author +'/'+result[i].permlink).set({
-          author: result[i].author,
-          id: result[i].post_id,
-          permlink: result[i].permlink,
-          title: result[i].title,
-          body: result[i].body,
-          json_metadata: result[i].json_metadata,
-          created: result[i].created,
-        });
-        // INDEXEDDB
+      for (var i = 0; i < result.length; i++) {
+        if (result[i].author != undefined) {
+          // testing for replies 
+          // console.log(" for loop data : " + JSON.stringify(result[i]));
+          // console.log("who dis " + hiveuser);
+          // console.log("i is " + i);
+          // http://127.0.0.1:3000/?post=yabapmatt/some-thoughts-on-the-future
+          // reactionCount = result[i].active_votes.length;
+          // console.log('post created on : ' + result[i].created);
+          let postedon = new Date(result[i].created.slice(0, 10)).toDateString();
+          let descjson = JSON.parse(result[i].json_metadata);
+          //console.log("working with json_metadata: " + JSON.stringify(descjson));
+          if (descjson.description !== undefined) {
+            // console.log("success on description : " + descjson.description);
+            postdesc = descjson.description;
+          } else {
+            // console.log("no desc");
+            postdesc = md.render(result[i].body);
+            postdesc = strip(postdesc);
+            postdesc = sanitize(postdesc);
+            postdesc = truncate(postdesc, 20);
+            // console.log("What post desc we working with here: " + postdesc);
+            postdesc = postdesc + "...";
+          }
+          postedon = postedon.split('GMT');
+          let id = i
+          // console.log(result[i].author + "/" + result[i].permlink)
+          // TODO : color reaction 
+          document.getElementById("friendfeed").innerHTML += "<div style='margin: 1em; padding-left: 1em; text-align: left'><div><a href='?post=" + result[i].author + "/" + result[i].permlink + "'>" + result[i].title + "</a></div>" +
+            "" + result[i].author + "<br />" + postedon + "<div style='overflow: hidden;'>" + postdesc + "</div>" +
+            "</div>";
 
-        
-        /* 
-        let findVoter = JSON.stringify(result[i].active_votes);
-        console.log(findVoter);
-        if (findVoter.search(localStorage.getItem("hive")) > 0) {
-          //  console.log("user found, you have upvoted this");
-          document.getElementById(id).style.color = "red";
-        } else {
-          // console.log('you have yet to upvote this post')
-        }
-        */
+          // INDEXEDDB (hub)
+          // localStorage.getItem('hive')
+          console.log("adding to localbase")
+          db.collection('hivecomment').doc(result[i].author + '/' + result[i].permlink).set({
+            author: result[i].author,
+            id: result[i].post_id,
+            permlink: result[i].permlink,
+            title: result[i].title,
+            body: result[i].body,
+            json_metadata: result[i].json_metadata,
+            created: result[i].created,
+          });
+          // INDEXEDDB
+
+
+          /* 
+          let findVoter = JSON.stringify(result[i].active_votes);
+          console.log(findVoter);
+          if (findVoter.search(localStorage.getItem("hive")) > 0) {
+            //  console.log("user found, you have upvoted this");
+            document.getElementById(id).style.color = "red";
+          } else {
+            // console.log('you have yet to upvote this post')
+          }
+          */
           // console.log("pass")
         } else {
           console.log(result);
@@ -927,8 +927,6 @@ function nonBlokzUser(hiveuser) {
 
 
   if (localStorage.getItem("hive") != undefined) {
-    // to thy own self be true
-
     let entryy = localStorage.getItem("hive");
     entryy = entryy.toLowerCase();
     // CURRENT TODO: FRIEND IMAGE
@@ -1071,7 +1069,7 @@ if (getQueryVariable("post") !== false) {
 
 
 function buildprofile(hiveuser) {
-console.log("is this a profile?")
+  console.log("is this a profile?")
 
   if (window.location.pathname != "/profile_update/") {
 
@@ -1145,8 +1143,8 @@ console.log("is this a profile?")
       // data for each post in a loop
       //document.getElementById("blog").innerHTML += "most recent posts of <h1><a href='/?hive=" + hiveuser + "'>" + hiveuser + "</a></h1>";
       for (var i = 0; i < result.length; i++) {
-     
-    
+
+
         // INDEXEDDB (@profile)
         // localStorage.getItem('hive')
         console.log("adding to localbase")
@@ -1157,7 +1155,7 @@ console.log("is this a profile?")
           whois = localStorage.getItem('hive');
         } */
 
-        db.collection('hivecomment').doc(result[i].author +'/'+result[i].permlink).set({
+        db.collection('hivecomment').doc(result[i].author + '/' + result[i].permlink).set({
           author: result[i].author,
           id: result[i].post_id,
           permlink: result[i].permlink,
@@ -1206,7 +1204,7 @@ console.log("is this a profile?")
 
         document.getElementById("blog").innerHTML += "<div style='margin: 1em; padding-left: 1em; text-align: left'><div><a href='?post=" + hiveuser + "/" + result[i].permlink + "'>" + result[i].title + "</a></div>" +
           "" + postedon + "<div style='overflow: hidden;'>" + postdesc + "</div>" +
-          "</div>"; 
+          "</div>";
         /* 
         let findVoter = JSON.stringify(result[i].active_votes);
         console.log(findVoter);
@@ -1223,7 +1221,7 @@ console.log("is this a profile?")
 
     // show link to peakd profile
     // TODO : remove link 
-    altfrontend(hiveuser); 
+    altfrontend(hiveuser);
     // fetch blokzprofile post from hive
     hive.api.getContent(hiveuser, 'blokzprofile', function (err, result) {
       // hive.api.getDiscussionsByAuthorBeforeDate(hiveuser, 'blokzprofile', now, 1, (err, result) => {
@@ -1385,7 +1383,7 @@ console.log("is this a profile?")
 
       if (hiveuser == localStorage.getItem('hive')) {
         // begin operation: HUB
-        altfrontend(hiveuser); 
+        altfrontend(hiveuser);
         console.log('this is the start of the main hub for browse as');
         let admin = document.getElementById('admin');
         let top8friends = document.getElementById('top8friends');
@@ -1394,16 +1392,16 @@ console.log("is this a profile?")
         document.getElementById('admin').innerHTML = "<h1 style='border-bottom: 1px solid black'>The Hub</h1>";
         admin.appendChild(fltrt);
         admin.appendChild(top8friends);
-  
+
         document.getElementById('admin').innerHTML += "<strong>About Me </strong>";
-  
-  
-  
+
+
+
         let article = document.getElementById('article');
         admin.appendChild(article);
         document.getElementById('admin').style = "padding-left: 2em; padding-right: 2em;"
         document.getElementById('top8friends').style = "width: 100%"
-  
+
         document.getElementById('admin').innerHTML += "<div><strong>Friend Feed</strong></div><div id='friendfeed'></div>";
         console.log(favs);
         friendfeed(favs);
@@ -1415,7 +1413,7 @@ console.log("is this a profile?")
     document.title = hiveuser + "'s personal.community profile";
 
 
- 
+
   }
 }
 
@@ -1432,7 +1430,7 @@ if (isMobile == false) {
 function showtag(tag) {
   hive.api.getDiscussionsByCreated({ "tag": tag, "limit": 20 }, function (err, result) {
     if (err === null) {
-      var i, len = result.length; 
+      var i, len = result.length;
       // console.log("what is a " + tag);
 
       // community check
